@@ -10,8 +10,15 @@ public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
     action: WritableKeyPath<GlobalAction, LocalAction?>
 ) -> Reducer<GlobalValue, GlobalAction> {
     { globalValue, globalAction in
-        guard let localAction = globalAction[keyPath: action] else { return {} }
-        let effect = reducer(&globalValue[keyPath: value], localAction)
-        return effect
+        guard let localAction = globalAction[keyPath: action] else { return [] }
+        let localEffects = reducer(&globalValue[keyPath: value], localAction)
+        return localEffects.map { localEffect in
+            { () -> GlobalAction? in
+                guard let localAction = localEffect() else { return nil }
+                var globalAction = globalAction
+                globalAction[keyPath: action] = localAction
+                return globalAction
+            }
+        }
     }
 }

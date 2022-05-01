@@ -5,17 +5,27 @@
 import Foundation
 import UIKit
 
-func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: PasswordGeneratorAction) -> Effect {
+func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: PasswordGeneratorAction) -> [Effect<PasswordGeneratorAction>] {
     switch action {
     case let .updatePasswordLength(length):
         state.passwordGenerated.characterCount = length
-        return {}
+        return []
     case let .passwordGenerated(action):
-        return passwordGeneratedReducer(state: &state.passwordGenerated, action: action)
-    case .copyPassword:
-        let state = state
-        return {
-            UIPasteboard.general.string = state.passwordGenerated.characters.joined()
+        let effects = passwordGeneratedReducer(state: &state.passwordGenerated, action: action)
+        return effects.map { effect in
+            if let action = effect() {
+                return { PasswordGeneratorAction.passwordGenerated(action) }
+            }
+            return { nil }
         }
+    case .copyPassword:
+        return [copyPasswordInPasteboardEffect(passwordGenerated: state.passwordGenerated.characters)]
+    }
+}
+
+private func copyPasswordInPasteboardEffect(passwordGenerated: [String]) -> Effect<PasswordGeneratorAction> {
+    {
+        UIPasteboard.general.string = passwordGenerated.joined()
+        return nil
     }
 }

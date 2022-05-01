@@ -10,7 +10,7 @@ struct KrakenVaultApp: App {
         WindowGroup {
             PasswordGeneratorView(
                 store: Store(
-                    initialValue: AppState(), reducer: appReducer
+                    initialValue: AppState(), reducer: logging(appReducer)
                 ).view(value: { $0.passwordGenerator }, action: { AppAction.passwordGenerator($0) })
             )
         }

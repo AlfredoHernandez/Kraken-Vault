@@ -4,10 +4,10 @@
 
 import Foundation
 
-func passwordGeneratedReducer(state: inout PasswordGeneratedState, action: PasswordGeneratedAction) -> Effect {
+func passwordGeneratedReducer(state: inout PasswordGeneratedState, action: PasswordGeneratedAction) -> [Effect<PasswordGeneratedAction>] {
     switch action {
     case .generate:
         state.characters = generatePassword(with: Int(state.characterCount))
-        return {}
+        return []
     }
 }
