@@ -56,5 +56,6 @@ struct ContentView_Previews: PreviewProvider {
         PasswordGeneratorView(
             store: Store(initialValue: PasswordGeneratorState(), reducer: passwordGeneratorReducer)
         )
+        .preferredColorScheme(.dark)
     }
 }

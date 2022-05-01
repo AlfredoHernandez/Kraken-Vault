@@ -5,12 +5,14 @@
 import Combine
 import SwiftUI
 
+public typealias Reducer<Value, Action> = (inout Value, Action) -> Void
+
 public final class Store<Value, Action>: ObservableObject {
-    private let reducer: (inout Value, Action) -> Void
+    private let reducer: Reducer<Value, Action>
     @Published public private(set) var value: Value
     private var cancellable: Cancellable?
 
-    public init(initialValue: Value, reducer: @escaping (inout Value, Action) -> Void) {
+    public init(initialValue: Value, reducer: @escaping Reducer<Value, Action>) {
         self.reducer = reducer
         value = initialValue
     }

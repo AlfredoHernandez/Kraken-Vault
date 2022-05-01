@@ -5,7 +5,7 @@
 import Foundation
 
 public func combine<Value, Action>(
-    _ reducers: (inout Value, Action) -> Void...
+    _ reducers: Reducer<Value, Action>...
 ) -> (inout Value, Action) -> Void {
     { value, action in
         for reducer in reducers {
