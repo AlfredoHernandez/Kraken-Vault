@@ -19,11 +19,15 @@ struct PasswordGeneratorView: View {
                             )
                         }
                         HStack {
-                            Spacer()
                             Button(action: { store.send(.copyPassword) }) {
                                 Text("Copy Password")
+                                    .bold()
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.green)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
                             }
-                            Spacer()
                         }
                     }
 
@@ -45,6 +49,9 @@ struct PasswordGeneratorView: View {
                         Text("Password length: \(Int(store.value.passwordGenerated.characterCount))")
                     }
 
+                    Section {} header: {
+                        Text("Options")
+                    }
                 }.navigationTitle(Text("Generator"))
             }
         }
