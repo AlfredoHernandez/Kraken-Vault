@@ -4,6 +4,6 @@
 
 import Foundation
 
-struct AppState {
-    var passwordGenerator = PasswordGeneratorState()
+struct PasswordGeneratorState {
+    var passwordGenerated = PasswordGeneratedState()
 }

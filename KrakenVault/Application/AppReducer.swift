@@ -4,4 +4,6 @@
 
 import Foundation
 
-let appReducer = pullback(passwordGeneratedReducer, value: \AppState.passwordGenerated, action: \AppAction.passwordGenerated)
+let appReducer: (inout AppState, AppAction) -> Void = combine(
+    pullback(passwordGeneratorReducer, value: \AppState.passwordGenerator, action: \AppAction.passwordGenerator)
+)

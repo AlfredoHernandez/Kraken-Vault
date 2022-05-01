@@ -7,7 +7,7 @@ import SwiftUI
 
 public final class Store<Value, Action>: ObservableObject {
     private let reducer: (inout Value, Action) -> Void
-    @Published public private(set) var value: Value
+    @Published public /* private(set) */ var value: Value
     private var cancellable: Cancellable?
 
     public init(initialValue: Value, reducer: @escaping (inout Value, Action) -> Void) {

@@ -21,6 +21,9 @@
 		3808FBF3281DFB4F00BF6A4E /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF2281DFB4F00BF6A4E /* AppAction.swift */; };
 		3808FBF5281DFB6400BF6A4E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF4281DFB6400BF6A4E /* AppState.swift */; };
 		3808FBF7281DFB7B00BF6A4E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */; };
+		3808FBF9281E062700BF6A4E /* PasswordGeneratorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF8281E062700BF6A4E /* PasswordGeneratorAction.swift */; };
+		3808FBFB281E063200BF6A4E /* PasswordGeneratorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBFA281E063200BF6A4E /* PasswordGeneratorState.swift */; };
+		3808FBFD281E064600BF6A4E /* PasswordGeneratorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBFC281E064600BF6A4E /* PasswordGeneratorReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		3808FBF2281DFB4F00BF6A4E /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		3808FBF4281DFB6400BF6A4E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		3808FBF8281E062700BF6A4E /* PasswordGeneratorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorAction.swift; sourceTree = "<group>"; };
+		3808FBFA281E063200BF6A4E /* PasswordGeneratorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorState.swift; sourceTree = "<group>"; };
+		3808FBFC281E064600BF6A4E /* PasswordGeneratorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				3808FBB9281DED4700BF6A4E /* PasswordGeneratorView.swift */,
+				3808FBF8281E062700BF6A4E /* PasswordGeneratorAction.swift */,
+				3808FBFA281E063200BF6A4E /* PasswordGeneratorState.swift */,
+				3808FBFC281E064600BF6A4E /* PasswordGeneratorReducer.swift */,
 			);
 			path = "Password Generator";
 			sourceTree = "<group>";
@@ -265,7 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3808FBFB281E063200BF6A4E /* PasswordGeneratorState.swift in Sources */,
+				3808FBF9281E062700BF6A4E /* PasswordGeneratorAction.swift in Sources */,
 				3808FBE3281DF0D400BF6A4E /* Store.swift in Sources */,
+				3808FBFD281E064600BF6A4E /* PasswordGeneratorReducer.swift in Sources */,
 				3808FBF7281DFB7B00BF6A4E /* AppReducer.swift in Sources */,
 				3808FBF5281DFB6400BF6A4E /* AppState.swift in Sources */,
 				3808FBEA281DF92500BF6A4E /* Color+Hexadecimal.swift in Sources */,

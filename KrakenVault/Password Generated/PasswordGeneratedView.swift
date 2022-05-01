@@ -21,19 +21,24 @@ struct PasswordGeneratedView: View {
             }
             .font(store.value.characterCount > 25 ? .system(size: 15) : .body)
             .animation(Animation.easeOut(duration: 0.1), value: store.value.characters)
-        }
+
+            Spacer()
+
+            Button(action: { store.send(.generate) }) {
+                Image(systemName: "arrow.clockwise")
+            }
+        }.onAppear(perform: { store.send(.generate) })
     }
 }
 
 struct PasswordGeneratedView_Previews: PreviewProvider {
-    static let password = ["1", "3", "%", "a", "B", "/", "#", "k", "0", "[", ">", "m", "0", "p", "{"]
     static var previews: some View {
         Group {
             PasswordGeneratedView(
-                store: Store(initialValue: PasswordGeneratedState(characters: password), reducer: passwordGeneratedReducer)
+                store: Store(initialValue: PasswordGeneratedState(), reducer: passwordGeneratedReducer)
             ).previewLayout(.sizeThatFits)
             PasswordGeneratedView(
-                store: Store(initialValue: PasswordGeneratedState(characters: password), reducer: passwordGeneratedReducer)
+                store: Store(initialValue: PasswordGeneratedState(), reducer: passwordGeneratedReducer)
             ).preferredColorScheme(.dark).previewLayout(.sizeThatFits)
         }
     }
