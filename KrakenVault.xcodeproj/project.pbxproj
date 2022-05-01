@@ -16,7 +16,7 @@
 		3808FBE5281DF10400BF6A4E /* Pullback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBE4281DF10400BF6A4E /* Pullback.swift */; };
 		3808FBE7281DF11800BF6A4E /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBE6281DF11800BF6A4E /* Combine.swift */; };
 		3808FBEA281DF92500BF6A4E /* Color+Hexadecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBE9281DF92500BF6A4E /* Color+Hexadecimal.swift */; };
-		3808FBED281DF98000BF6A4E /* PasswordGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBEC281DF98000BF6A4E /* PasswordGenerated.swift */; };
+		3808FBED281DF98000BF6A4E /* PasswordGeneratedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBEC281DF98000BF6A4E /* PasswordGeneratedAction.swift */; };
 		3808FBEF281DF99900BF6A4E /* PasswordGeneratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBEE281DF99900BF6A4E /* PasswordGeneratedView.swift */; };
 		3808FBF3281DFB4F00BF6A4E /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF2281DFB4F00BF6A4E /* AppAction.swift */; };
 		3808FBF5281DFB6400BF6A4E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF4281DFB6400BF6A4E /* AppState.swift */; };
@@ -24,6 +24,10 @@
 		3808FBF9281E062700BF6A4E /* PasswordGeneratorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF8281E062700BF6A4E /* PasswordGeneratorAction.swift */; };
 		3808FBFB281E063200BF6A4E /* PasswordGeneratorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBFA281E063200BF6A4E /* PasswordGeneratorState.swift */; };
 		3808FBFD281E064600BF6A4E /* PasswordGeneratorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBFC281E064600BF6A4E /* PasswordGeneratorReducer.swift */; };
+		3808FBFF281E0FF100BF6A4E /* PasswordComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBFE281E0FF100BF6A4E /* PasswordComponents.swift */; };
+		3808FC01281E100D00BF6A4E /* GeneratePasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FC00281E100D00BF6A4E /* GeneratePasswordUseCase.swift */; };
+		3808FC07281E106200BF6A4E /* PasswordGeneratedReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FC06281E106100BF6A4E /* PasswordGeneratedReducer.swift */; };
+		3808FC09281E108000BF6A4E /* PasswordGeneratedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FC08281E108000BF6A4E /* PasswordGeneratedState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +52,7 @@
 		3808FBE4281DF10400BF6A4E /* Pullback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pullback.swift; sourceTree = "<group>"; };
 		3808FBE6281DF11800BF6A4E /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
 		3808FBE9281DF92500BF6A4E /* Color+Hexadecimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hexadecimal.swift"; sourceTree = "<group>"; };
-		3808FBEC281DF98000BF6A4E /* PasswordGenerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerated.swift; sourceTree = "<group>"; };
+		3808FBEC281DF98000BF6A4E /* PasswordGeneratedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedAction.swift; sourceTree = "<group>"; };
 		3808FBEE281DF99900BF6A4E /* PasswordGeneratedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedView.swift; sourceTree = "<group>"; };
 		3808FBF2281DFB4F00BF6A4E /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		3808FBF4281DFB6400BF6A4E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -56,6 +60,10 @@
 		3808FBF8281E062700BF6A4E /* PasswordGeneratorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorAction.swift; sourceTree = "<group>"; };
 		3808FBFA281E063200BF6A4E /* PasswordGeneratorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorState.swift; sourceTree = "<group>"; };
 		3808FBFC281E064600BF6A4E /* PasswordGeneratorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorReducer.swift; sourceTree = "<group>"; };
+		3808FBFE281E0FF100BF6A4E /* PasswordComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordComponents.swift; sourceTree = "<group>"; };
+		3808FC00281E100D00BF6A4E /* GeneratePasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratePasswordUseCase.swift; sourceTree = "<group>"; };
+		3808FC06281E106100BF6A4E /* PasswordGeneratedReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedReducer.swift; sourceTree = "<group>"; };
+		3808FC08281E108000BF6A4E /* PasswordGeneratedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +153,10 @@
 		3808FBEB281DF96300BF6A4E /* Password Generated */ = {
 			isa = PBXGroup;
 			children = (
-				3808FBEC281DF98000BF6A4E /* PasswordGenerated.swift */,
+				3808FC02281E102300BF6A4E /* Domain */,
+				3808FC06281E106100BF6A4E /* PasswordGeneratedReducer.swift */,
+				3808FBEC281DF98000BF6A4E /* PasswordGeneratedAction.swift */,
+				3808FC08281E108000BF6A4E /* PasswordGeneratedState.swift */,
 				3808FBEE281DF99900BF6A4E /* PasswordGeneratedView.swift */,
 			);
 			path = "Password Generated";
@@ -171,6 +182,15 @@
 				3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		3808FC02281E102300BF6A4E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3808FBFE281E0FF100BF6A4E /* PasswordComponents.swift */,
+				3808FC00281E100D00BF6A4E /* GeneratePasswordUseCase.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,14 +297,18 @@
 				3808FBFB281E063200BF6A4E /* PasswordGeneratorState.swift in Sources */,
 				3808FBF9281E062700BF6A4E /* PasswordGeneratorAction.swift in Sources */,
 				3808FBE3281DF0D400BF6A4E /* Store.swift in Sources */,
+				3808FBFF281E0FF100BF6A4E /* PasswordComponents.swift in Sources */,
 				3808FBFD281E064600BF6A4E /* PasswordGeneratorReducer.swift in Sources */,
+				3808FC07281E106200BF6A4E /* PasswordGeneratedReducer.swift in Sources */,
 				3808FBF7281DFB7B00BF6A4E /* AppReducer.swift in Sources */,
 				3808FBF5281DFB6400BF6A4E /* AppState.swift in Sources */,
 				3808FBEA281DF92500BF6A4E /* Color+Hexadecimal.swift in Sources */,
+				3808FC09281E108000BF6A4E /* PasswordGeneratedState.swift in Sources */,
 				3808FBBA281DED4700BF6A4E /* PasswordGeneratorView.swift in Sources */,
 				3808FBEF281DF99900BF6A4E /* PasswordGeneratedView.swift in Sources */,
 				3808FBF3281DFB4F00BF6A4E /* AppAction.swift in Sources */,
-				3808FBED281DF98000BF6A4E /* PasswordGenerated.swift in Sources */,
+				3808FBED281DF98000BF6A4E /* PasswordGeneratedAction.swift in Sources */,
+				3808FC01281E100D00BF6A4E /* GeneratePasswordUseCase.swift in Sources */,
 				3808FBB8281DED4700BF6A4E /* KrakenVaultApp.swift in Sources */,
 				3808FBE7281DF11800BF6A4E /* Combine.swift in Sources */,
 				3808FBE5281DF10400BF6A4E /* Pullback.swift in Sources */,
