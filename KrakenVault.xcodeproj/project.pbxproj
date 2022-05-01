@@ -105,11 +105,10 @@
 		3808FBB6281DED4700BF6A4E /* KrakenVault */ = {
 			isa = PBXGroup;
 			children = (
-				3808FBF1281DFB3D00BF6A4E /* Application */,
-				3808FBF0281DFB1500BF6A4E /* Password Generator */,
-				3808FBEB281DF96300BF6A4E /* Password Generated */,
-				3808FBE8281DF91200BF6A4E /* Extensions */,
 				3808FBE1281DF0B900BF6A4E /* Composable Architecture */,
+				3808FBE8281DF91200BF6A4E /* Extensions */,
+				3808FBF1281DFB3D00BF6A4E /* Application */,
+				3808FC0A281E1C2800BF6A4E /* KV Password Generator */,
 				3808FBBB281DED4700BF6A4E /* Assets.xcassets */,
 				3808FBBD281DED4700BF6A4E /* Preview Content */,
 			);
@@ -191,6 +190,15 @@
 				3808FC00281E100D00BF6A4E /* GeneratePasswordUseCase.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		3808FC0A281E1C2800BF6A4E /* KV Password Generator */ = {
+			isa = PBXGroup;
+			children = (
+				3808FBF0281DFB1500BF6A4E /* Password Generator */,
+				3808FBEB281DF96300BF6A4E /* Password Generated */,
+			);
+			path = "KV Password Generator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
