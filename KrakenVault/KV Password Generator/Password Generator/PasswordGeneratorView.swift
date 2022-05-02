@@ -80,7 +80,14 @@ struct PasswordGeneratorView: View {
                                 set: { store.send(.passwordGenerated(.includeNumbers($0))) }
                             )
                         )
-                    } header: { Text("Include") }
+                    } header: {
+                        Text("Include")
+                    } footer: {
+                        HStack(alignment: .top) {
+                            Text("Note").bold()
+                            Text("Each active parameter reinforces the password security.")
+                        }
+                    }
                 }.navigationTitle(Text("Generator"))
             }
         }
