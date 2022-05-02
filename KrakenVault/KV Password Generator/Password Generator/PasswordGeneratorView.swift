@@ -51,36 +51,36 @@ struct PasswordGeneratorView: View {
                     }
 
                     Section {
-                        Toggle(isOn: Binding(
-                            get: { store.value.passwordGenerated.includeSpecialChars },
-                            set: { store.send(.passwordGenerated(.includeSpecialChars($0))) }
-                        ), label: {
-                            HStack {
-                                Text("Special Characters")
-                                Text("&-$").foregroundColor(Color.red)
-                            }
-                        })
-                        Toggle(isOn: Binding(
-                            get: { store.value.passwordGenerated.includeUppercased },
-                            set: { store.send(.passwordGenerated(.includeUppercased($0))) }
-                        ), label: {
-                            HStack {
-                                Text("Uppercased")
-                                Text("A-Z").foregroundColor(Color.yellow)
-                            }
-                        })
-                        Toggle(isOn: Binding(
-                            get: { store.value.passwordGenerated.includeNumbers },
-                            set: { store.send(.passwordGenerated(.includeNumbers($0))) }
-                        ), label: {
-                            HStack {
-                                Text("Numbers")
-                                Text("0-9").foregroundColor(Color.cyan)
-                            }
-                        })
-                    } header: {
-                        Text("Include")
-                    }
+                        PasswordOptionToggle(
+                            title: "Special Characters",
+                            exampleText: "&-$",
+                            color: .red,
+                            option: Binding(
+                                get: { store.value.passwordGenerated.includeSpecialChars },
+                                set: { store.send(.passwordGenerated(.includeSpecialChars($0))) }
+                            )
+                        )
+
+                        PasswordOptionToggle(
+                            title: "Uppercased",
+                            exampleText: "A-Z",
+                            color: .yellow,
+                            option: Binding(
+                                get: { store.value.passwordGenerated.includeUppercased },
+                                set: { store.send(.passwordGenerated(.includeUppercased($0))) }
+                            )
+                        )
+
+                        PasswordOptionToggle(
+                            title: "Numbers",
+                            exampleText: "0-9",
+                            color: .cyan,
+                            option: Binding(
+                                get: { store.value.passwordGenerated.includeNumbers },
+                                set: { store.send(.passwordGenerated(.includeNumbers($0))) }
+                            )
+                        )
+                    } header: { Text("Include") }
                 }.navigationTitle(Text("Generator"))
             }
         }
