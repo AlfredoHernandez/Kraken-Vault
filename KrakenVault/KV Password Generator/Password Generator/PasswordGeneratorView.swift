@@ -19,11 +19,15 @@ struct PasswordGeneratorView: View {
                             )
                         }
                         HStack {
-                            Spacer()
                             Button(action: { store.send(.copyPassword) }) {
                                 Text("Copy Password")
+                                    .bold()
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.green)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
                             }
-                            Spacer()
                         }
                     }
 
@@ -38,6 +42,7 @@ struct PasswordGeneratorView: View {
                             in: store.value.passwordGenerated.passwordLenghtRange,
                             step: 1
                         )
+                        .accentColor(.green)
                         .transition(.opacity)
                         .transition(.move(edge: .top))
                         .animation(Animation.easeOut(duration: 0.8), value: store.value.passwordGenerated.characterCount)
@@ -45,6 +50,44 @@ struct PasswordGeneratorView: View {
                         Text("Password length: \(Int(store.value.passwordGenerated.characterCount))")
                     }
 
+                    Section {
+                        PasswordOptionToggle(
+                            title: "Special Characters",
+                            exampleText: "&-$",
+                            color: .red,
+                            option: Binding(
+                                get: { store.value.passwordGenerated.includeSpecialChars },
+                                set: { store.send(.passwordGenerated(.includeSpecialChars($0))) }
+                            )
+                        )
+
+                        PasswordOptionToggle(
+                            title: "Uppercased",
+                            exampleText: "A-Z",
+                            color: .yellow,
+                            option: Binding(
+                                get: { store.value.passwordGenerated.includeUppercased },
+                                set: { store.send(.passwordGenerated(.includeUppercased($0))) }
+                            )
+                        )
+
+                        PasswordOptionToggle(
+                            title: "Numbers",
+                            exampleText: "0-9",
+                            color: .cyan,
+                            option: Binding(
+                                get: { store.value.passwordGenerated.includeNumbers },
+                                set: { store.send(.passwordGenerated(.includeNumbers($0))) }
+                            )
+                        )
+                    } header: {
+                        Text("Include")
+                    } footer: {
+                        HStack(alignment: .top) {
+                            Text("Note").bold()
+                            Text("Each active parameter reinforces the password security.")
+                        }
+                    }
                 }.navigationTitle(Text("Generator"))
             }
         }

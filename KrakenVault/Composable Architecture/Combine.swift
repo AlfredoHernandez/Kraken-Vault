@@ -6,10 +6,9 @@ import Foundation
 
 public func combine<Value, Action>(
     _ reducers: Reducer<Value, Action>...
-) -> (inout Value, Action) -> Void {
+) -> Reducer<Value, Action> {
     { value, action in
-        for reducer in reducers {
-            reducer(&value, action)
-        }
+        let effects = reducers.flatMap { $0(&value, action) }
+        return effects
     }
 }

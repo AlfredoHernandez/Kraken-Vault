@@ -5,7 +5,8 @@
 import Combine
 import SwiftUI
 
-public typealias Reducer<Value, Action> = (inout Value, Action) -> Void
+public typealias Effect<Action> = () -> Action?
+public typealias Reducer<Value, Action> = (inout Value, Action) -> [Effect<Action>]
 
 public final class Store<Value, Action>: ObservableObject {
     private let reducer: Reducer<Value, Action>
@@ -18,7 +19,12 @@ public final class Store<Value, Action>: ObservableObject {
     }
 
     public func send(_ action: Action) {
-        reducer(&value, action)
+        let effects = reducer(&value, action)
+        effects.forEach { effect in
+            if let action = effect() {
+                self.send(action)
+            }
+        }
     }
 
     public func view<LocalValue, LocalAction>(
@@ -30,6 +36,7 @@ public final class Store<Value, Action>: ObservableObject {
             reducer: { localValue, localAction in
                 self.send(toGlobalAction(localAction))
                 localValue = toLocalValue(self.value)
+                return []
             }
         )
         localStore.cancellable = $value.sink { [weak localStore] newValue in

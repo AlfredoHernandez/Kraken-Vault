@@ -5,6 +5,7 @@
 import SwiftUI
 
 struct PasswordGeneratedView: View {
+    @State private var angle: Double = 365
     @ObservedObject var store: Store<PasswordGeneratedState, PasswordGeneratedAction>
 
     var body: some View {
@@ -13,20 +14,25 @@ struct PasswordGeneratedView: View {
                 ForEach(store.value.characters, id: \.self) { character in
                     Text(character)
                         .foregroundColor(
-                            store.value.specialCharactersArray.contains(character) ? Color(hexadecimal: "#f16581")
-                                : store.value.numbersArray.contains(character) ? Color(hexadecimal: "#4EB3BC")
-                                : store.value.alphabet.contains(character) ? .gray : Color(hexadecimal: "#ffbc42")
+                            store.value.specialCharactersArray.contains(character) ? Color.red
+                                : store.value.numbersArray.contains(character) ? Color.cyan
+                                : store.value.alphabet.contains(character) ? .gray : .yellow
                         )
                 }
             }
             .font(store.value.characterCount > 25 ? .system(size: 15) : .body)
-            .animation(Animation.easeOut(duration: 0.1), value: store.value.characters)
-
-            Spacer()
-
-            Button(action: { store.send(.generate) }) {
-                Image(systemName: "arrow.clockwise")
-            }
+            .animation(Animation.easeOut(duration: 0.2), value: store.value.characters)
+            .frame(maxWidth: .infinity)
+            Button(action: {
+                angle += 365
+                store.send(.generate)
+            }) {
+                Image(systemName: "arrow.triangle.2.circlepath")
+                    .foregroundColor(.green)
+                    .font(.body.bold())
+                    .frame(width: 32, height: 32, alignment: .center)
+            }.rotationEffect(Angle(degrees: angle))
+                .animation(.easeIn, value: angle)
         }.onAppear(perform: { store.send(.generate) })
     }
 }

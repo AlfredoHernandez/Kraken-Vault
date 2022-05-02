@@ -6,4 +6,7 @@ import Foundation
 
 enum PasswordGeneratedAction {
     case generate
+    case includeSpecialChars(Bool)
+    case includeUppercased(Bool)
+    case includeNumbers(Bool)
 }

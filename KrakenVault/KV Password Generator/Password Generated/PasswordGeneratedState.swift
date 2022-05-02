@@ -11,4 +11,8 @@ struct PasswordGeneratedState {
     let alphabet = PasswordComponents.alphabet
     let specialCharactersArray = PasswordComponents.specialCharactersArray
     let numbersArray = PasswordComponents.numbersArray
+
+    var includeSpecialChars = true
+    var includeUppercased = true
+    var includeNumbers = true
 }
