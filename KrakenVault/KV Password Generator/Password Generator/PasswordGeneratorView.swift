@@ -50,8 +50,36 @@ struct PasswordGeneratorView: View {
                         Text("Password length: \(Int(store.value.passwordGenerated.characterCount))")
                     }
 
-                    Section {} header: {
-                        Text("Options")
+                    Section {
+                        Toggle(isOn: Binding(
+                            get: { store.value.passwordGenerated.includeSpecialChars },
+                            set: { store.send(.passwordGenerated(.includeSpecialChars($0))) }
+                        ), label: {
+                            HStack {
+                                Text("Special Characters")
+                                Text("&-$").foregroundColor(Color.red)
+                            }
+                        })
+                        Toggle(isOn: Binding(
+                            get: { store.value.passwordGenerated.includeUppercased },
+                            set: { store.send(.passwordGenerated(.includeUppercased($0))) }
+                        ), label: {
+                            HStack {
+                                Text("Uppercased")
+                                Text("A-Z").foregroundColor(Color.yellow)
+                            }
+                        })
+                        Toggle(isOn: Binding(
+                            get: { store.value.passwordGenerated.includeNumbers },
+                            set: { store.send(.passwordGenerated(.includeNumbers($0))) }
+                        ), label: {
+                            HStack {
+                                Text("Numbers")
+                                Text("0-9").foregroundColor(Color.cyan)
+                            }
+                        })
+                    } header: {
+                        Text("Include")
                     }
                 }.navigationTitle(Text("Generator"))
             }

@@ -14,9 +14,9 @@ struct PasswordGeneratedView: View {
                 ForEach(store.value.characters, id: \.self) { character in
                     Text(character)
                         .foregroundColor(
-                            store.value.specialCharactersArray.contains(character) ? Color(hexadecimal: "#f16581")
-                                : store.value.numbersArray.contains(character) ? Color(hexadecimal: "#4EB3BC")
-                                : store.value.alphabet.contains(character) ? .gray : Color(hexadecimal: "#ffbc42")
+                            store.value.specialCharactersArray.contains(character) ? Color.red
+                                : store.value.numbersArray.contains(character) ? Color.cyan
+                                : store.value.alphabet.contains(character) ? .gray : .yellow
                         )
                 }
             }

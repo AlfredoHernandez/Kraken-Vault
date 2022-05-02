@@ -15,7 +15,6 @@
 		3808FBE3281DF0D400BF6A4E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBE2281DF0D400BF6A4E /* Store.swift */; };
 		3808FBE5281DF10400BF6A4E /* Pullback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBE4281DF10400BF6A4E /* Pullback.swift */; };
 		3808FBE7281DF11800BF6A4E /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBE6281DF11800BF6A4E /* Combine.swift */; };
-		3808FBEA281DF92500BF6A4E /* Color+Hexadecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBE9281DF92500BF6A4E /* Color+Hexadecimal.swift */; };
 		3808FBED281DF98000BF6A4E /* PasswordGeneratedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBEC281DF98000BF6A4E /* PasswordGeneratedAction.swift */; };
 		3808FBEF281DF99900BF6A4E /* PasswordGeneratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBEE281DF99900BF6A4E /* PasswordGeneratedView.swift */; };
 		3808FBF3281DFB4F00BF6A4E /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF2281DFB4F00BF6A4E /* AppAction.swift */; };
@@ -52,7 +51,6 @@
 		3808FBE2281DF0D400BF6A4E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		3808FBE4281DF10400BF6A4E /* Pullback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pullback.swift; sourceTree = "<group>"; };
 		3808FBE6281DF11800BF6A4E /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
-		3808FBE9281DF92500BF6A4E /* Color+Hexadecimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hexadecimal.swift"; sourceTree = "<group>"; };
 		3808FBEC281DF98000BF6A4E /* PasswordGeneratedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedAction.swift; sourceTree = "<group>"; };
 		3808FBEE281DF99900BF6A4E /* PasswordGeneratedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedView.swift; sourceTree = "<group>"; };
 		3808FBF2281DFB4F00BF6A4E /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				3808FBE1281DF0B900BF6A4E /* Composable Architecture */,
-				3808FBE8281DF91200BF6A4E /* Extensions */,
 				3808FBF1281DFB3D00BF6A4E /* Application */,
 				3808FC0A281E1C2800BF6A4E /* KV Password Generator */,
 				3808FBBB281DED4700BF6A4E /* Assets.xcassets */,
@@ -142,14 +139,6 @@
 				38C68E09281F3F7B00072713 /* Logging.swift */,
 			);
 			path = "Composable Architecture";
-			sourceTree = "<group>";
-		};
-		3808FBE8281DF91200BF6A4E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				3808FBE9281DF92500BF6A4E /* Color+Hexadecimal.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		3808FBEB281DF96300BF6A4E /* Password Generated */ = {
@@ -314,7 +303,6 @@
 				3808FC07281E106200BF6A4E /* PasswordGeneratedReducer.swift in Sources */,
 				3808FBF7281DFB7B00BF6A4E /* AppReducer.swift in Sources */,
 				3808FBF5281DFB6400BF6A4E /* AppState.swift in Sources */,
-				3808FBEA281DF92500BF6A4E /* Color+Hexadecimal.swift in Sources */,
 				3808FC09281E108000BF6A4E /* PasswordGeneratedState.swift in Sources */,
 				3808FBBA281DED4700BF6A4E /* PasswordGeneratorView.swift in Sources */,
 				3808FBEF281DF99900BF6A4E /* PasswordGeneratedView.swift in Sources */,
