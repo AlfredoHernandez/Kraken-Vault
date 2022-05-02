@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct PasswordGeneratedView: View {
-    @State private var angle: Double = 365
+    @State private var angle: Double = 360
     @ObservedObject var store: Store<PasswordGeneratedState, PasswordGeneratedAction>
 
     var body: some View {
@@ -24,16 +24,18 @@ struct PasswordGeneratedView: View {
             .font(store.value.characterCount > 25 ? .system(size: 15).monospaced() : .body.monospaced())
             .animation(Animation.easeOut(duration: 0.2), value: store.value.characters)
             .frame(maxWidth: .infinity)
+
             Button(action: {
-                angle += 365
+                angle += 360
                 store.send(.generate)
             }) {
                 Image(systemName: "arrow.triangle.2.circlepath")
                     .foregroundColor(.accentColor)
                     .font(.body.bold())
                     .frame(width: 32, height: 32, alignment: .center)
-            }.rotationEffect(Angle(degrees: angle))
-                .animation(.easeIn, value: angle)
+            }
+            .rotationEffect(Angle(degrees: angle))
+            .animation(.easeIn, value: angle)
         }.onAppear(perform: { store.send(.generate) })
     }
 }
