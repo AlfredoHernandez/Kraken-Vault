@@ -11,12 +11,12 @@ struct PasswordGeneratedView: View {
     var body: some View {
         HStack(spacing: 0) {
             HStack(spacing: 1) {
-                ForEach(store.value.characters, id: \.self) { character in
-                    Text(character)
+                ForEach(0 ..< store.value.characters.count, id: \.self) { index in
+                    Text(store.value.characters[index])
                         .foregroundColor(
-                            store.value.specialCharactersArray.contains(character) ? Color.red
-                                : store.value.numbersArray.contains(character) ? Color.cyan
-                                : store.value.alphabet.contains(character) ? .gray : .yellow
+                            store.value.specialCharactersArray.contains(store.value.characters[index]) ? Color.red
+                                : store.value.numbersArray.contains(store.value.characters[index]) ? Color.cyan
+                                : store.value.alphabet.contains(store.value.characters[index]) ? .gray : .yellow
                         )
                 }
             }
