@@ -19,13 +19,23 @@ func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: Passw
             return { nil }
         }
     case .copyPassword:
-        return [copyPasswordInPasteboardEffect(passwordGenerated: state.passwordGenerated.characters)]
+        return [
+            copyPasswordInPasteboardEffect(passwordGenerated: state.passwordGenerated.characters),
+            generateHapticEffect(),
+        ]
     }
 }
 
 private func copyPasswordInPasteboardEffect(passwordGenerated: [String]) -> Effect<PasswordGeneratorAction> {
     {
         UIPasteboard.general.string = passwordGenerated.joined()
+        return nil
+    }
+}
+
+private func generateHapticEffect() -> Effect<PasswordGeneratorAction> {
+    {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         return nil
     }
 }
