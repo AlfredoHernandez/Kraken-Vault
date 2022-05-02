@@ -7,9 +7,9 @@ import SwiftUI
 struct KrakenVaultMainView: View {
     var body: some View {
         TabView {
-            Text("Vault")
+            VaultView()
                 .tabItem {
-                    Image(systemName: "house.fill")
+                    Image(systemName: "lock.square")
                     Text("Vault")
                 }
 
