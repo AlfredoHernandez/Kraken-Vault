@@ -84,13 +84,13 @@ struct PasswordGeneratorView: View {
                         Text("Include")
                     } footer: {
                         HStack(alignment: .top) {
-                            Text("Note").bold()
-                            Text("Each active parameter reinforces the password security.")
+                            Text("Note: Each active parameter reinforces the password security.")
                         }
                     }
                 }.navigationTitle(Text("Generator"))
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
