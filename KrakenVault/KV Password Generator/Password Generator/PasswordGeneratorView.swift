@@ -24,7 +24,7 @@ struct PasswordGeneratorView: View {
                                     .bold()
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Color.green)
+                                    .background(Color.accentColor)
                                     .foregroundColor(.white)
                                     .cornerRadius(8)
                             }
@@ -42,7 +42,7 @@ struct PasswordGeneratorView: View {
                             in: store.value.passwordGenerated.passwordLenghtRange,
                             step: 1
                         )
-                        .accentColor(.green)
+                        .accentColor(.accentColor)
                         .transition(.opacity)
                         .transition(.move(edge: .top))
                         .animation(Animation.easeOut(duration: 0.8), value: store.value.passwordGenerated.characterCount)

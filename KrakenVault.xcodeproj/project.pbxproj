@@ -27,6 +27,7 @@
 		3808FC01281E100D00BF6A4E /* GeneratePasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FC00281E100D00BF6A4E /* GeneratePasswordUseCase.swift */; };
 		3808FC07281E106200BF6A4E /* PasswordGeneratedReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FC06281E106100BF6A4E /* PasswordGeneratedReducer.swift */; };
 		3808FC09281E108000BF6A4E /* PasswordGeneratedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FC08281E108000BF6A4E /* PasswordGeneratedState.swift */; };
+		389E54FC2820699500F52D68 /* KrakenVaultMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */; };
 		38C68E0A281F3F7B00072713 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C68E09281F3F7B00072713 /* Logging.swift */; };
 		38C68E0C281F634500072713 /* PasswordOptionToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C68E0B281F634500072713 /* PasswordOptionToggle.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		3808FC00281E100D00BF6A4E /* GeneratePasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratePasswordUseCase.swift; sourceTree = "<group>"; };
 		3808FC06281E106100BF6A4E /* PasswordGeneratedReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedReducer.swift; sourceTree = "<group>"; };
 		3808FC08281E108000BF6A4E /* PasswordGeneratedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratedState.swift; sourceTree = "<group>"; };
+		389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakenVaultMainView.swift; sourceTree = "<group>"; };
 		38C68E09281F3F7B00072713 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		38C68E0B281F634500072713 /* PasswordOptionToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordOptionToggle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,10 +172,11 @@
 		3808FBF1281DFB3D00BF6A4E /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				3808FBB7281DED4700BF6A4E /* KrakenVaultApp.swift */,
 				3808FBF2281DFB4F00BF6A4E /* AppAction.swift */,
-				3808FBF4281DFB6400BF6A4E /* AppState.swift */,
 				3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */,
+				3808FBF4281DFB6400BF6A4E /* AppState.swift */,
+				3808FBB7281DED4700BF6A4E /* KrakenVaultApp.swift */,
+				389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				3808FBF9281E062700BF6A4E /* PasswordGeneratorAction.swift in Sources */,
 				38C68E0A281F3F7B00072713 /* Logging.swift in Sources */,
 				3808FBE3281DF0D400BF6A4E /* Store.swift in Sources */,
+				389E54FC2820699500F52D68 /* KrakenVaultMainView.swift in Sources */,
 				3808FBFF281E0FF100BF6A4E /* PasswordComponents.swift in Sources */,
 				3808FBFD281E064600BF6A4E /* PasswordGeneratorReducer.swift in Sources */,
 				3808FC07281E106200BF6A4E /* PasswordGeneratedReducer.swift in Sources */,

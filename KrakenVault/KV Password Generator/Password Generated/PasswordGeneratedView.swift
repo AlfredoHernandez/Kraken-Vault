@@ -28,7 +28,7 @@ struct PasswordGeneratedView: View {
                 store.send(.generate)
             }) {
                 Image(systemName: "arrow.triangle.2.circlepath")
-                    .foregroundColor(.green)
+                    .foregroundColor(.accentColor)
                     .font(.body.bold())
                     .frame(width: 32, height: 32, alignment: .center)
             }.rotationEffect(Angle(degrees: angle))
