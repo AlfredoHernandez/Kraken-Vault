@@ -21,7 +21,7 @@ struct PasswordGeneratedView: View {
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
-            .font(store.value.characterCount > 25 ? .system(size: 15).monospaced() : .body.monospaced())
+            .font(store.value.characterCount > 25 ? .system(size: 15).monospaced().bold() : .body.monospaced().bold())
             .animation(Animation.easeOut(duration: 0.2), value: store.value.characters)
             .frame(maxWidth: .infinity)
 
@@ -34,6 +34,7 @@ struct PasswordGeneratedView: View {
                     .font(.body.bold())
                     .frame(width: 32, height: 32, alignment: .center)
             }
+            .buttonStyle(PlainButtonStyle())
             .rotationEffect(Angle(degrees: angle))
             .animation(.easeIn, value: angle)
         }.onAppear(perform: { store.send(.generate) })

@@ -28,6 +28,7 @@ struct PasswordGeneratorView: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(8)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
 
