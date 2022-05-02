@@ -9,8 +9,8 @@ struct PasswordGeneratedView: View {
     @ObservedObject var store: Store<PasswordGeneratedState, PasswordGeneratedAction>
 
     var body: some View {
-        HStack {
-            HStack(spacing: 0.5) {
+        HStack(spacing: 0) {
+            HStack(spacing: 1) {
                 ForEach(store.value.characters, id: \.self) { character in
                     Text(character)
                         .foregroundColor(
@@ -20,7 +20,8 @@ struct PasswordGeneratedView: View {
                         )
                 }
             }
-            .font(store.value.characterCount > 25 ? .system(size: 15) : .body)
+            .fixedSize(horizontal: false, vertical: true)
+            .font(store.value.characterCount > 25 ? .system(size: 15).monospaced() : .body.monospaced())
             .animation(Animation.easeOut(duration: 0.2), value: store.value.characters)
             .frame(maxWidth: .infinity)
             Button(action: {
