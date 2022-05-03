@@ -11,7 +11,7 @@ func logging<Value, Action>(
         let effects = reducer(&value, action)
         let value = value
         return [
-            { _ in
+            Effect { _ in
                 print("Action: \(action)")
                 print("Value:")
                 dump(value)

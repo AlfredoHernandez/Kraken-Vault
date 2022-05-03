@@ -5,8 +5,21 @@
 import Combine
 import SwiftUI
 
-public typealias Effect<Action> = (@escaping (Action) -> Void) -> Void
 public typealias Reducer<Value, Action> = (inout Value, Action) -> [Effect<Action>]
+
+public struct Effect<A> {
+    public let run: (@escaping (A) -> Void) -> Void
+
+    public init(run: @escaping (@escaping (A) -> Void) -> Void) {
+        self.run = run
+    }
+
+    public func map<B>(_ f: @escaping (A) -> B) -> Effect<B> {
+        Effect<B> { callback in
+            self.run { a in callback(f(a)) }
+        }
+    }
+}
 
 public final class Store<Value, Action>: ObservableObject {
     private let reducer: Reducer<Value, Action>
@@ -21,7 +34,7 @@ public final class Store<Value, Action>: ObservableObject {
     public func send(_ action: Action) {
         let effects = reducer(&value, action)
         effects.forEach { effect in
-            effect(self.send(_:))
+            effect.run(self.send(_:))
         }
     }
 
