@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct PasswordGeneratedState {
+struct PasswordGeneratorState {
     var characters = [String]()
     var characterCount: Double = 12
     let passwordLengthRange = 6.0 ... 32.0

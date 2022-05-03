@@ -5,7 +5,7 @@
 import Foundation
 import UIKit
 
-func passwordGeneratedReducer(state: inout PasswordGeneratedState, action: PasswordGeneratedAction) -> [Effect<PasswordGeneratedAction>] {
+func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: PasswordGeneratorAction) -> [Effect<PasswordGeneratorAction>] {
     switch action {
     case .generate:
         state.characters = generatePassword(
@@ -24,13 +24,25 @@ func passwordGeneratedReducer(state: inout PasswordGeneratedState, action: Passw
     case let .includeUppercased(withUppercased):
         state.includeUppercased = withUppercased
         return [generatePasswordEffect()]
+    case let .updatePasswordLength(length):
+        state.characterCount = length
+        return []
+    case .copyPassword:
+        return [
+            copyPasswordInPasteboardEffect(passwordGenerated: state.characters),
+            generateHapticEffect(),
+        ]
     }
 }
 
-private func generateHapticEffect() -> Effect<PasswordGeneratedAction> {
+private func copyPasswordInPasteboardEffect(passwordGenerated: [String]) -> Effect<PasswordGeneratorAction> {
+    Effect { _ in UIPasteboard.general.string = passwordGenerated.joined() }
+}
+
+private func generateHapticEffect() -> Effect<PasswordGeneratorAction> {
     Effect { _ in UIImpactFeedbackGenerator(style: .light).impactOccurred() }
 }
 
-private func generatePasswordEffect() -> Effect<PasswordGeneratedAction> {
+private func generatePasswordEffect() -> Effect<PasswordGeneratorAction> {
     Effect { callback in callback(.generate) }
 }

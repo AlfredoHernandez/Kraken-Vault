@@ -16,7 +16,7 @@ struct KrakenVaultMainView: View {
             PasswordGeneratorView(
                 store: Store(
                     initialValue: AppState(), reducer: logging(appReducer)
-                ).view(value: { $0.passwordGenerator }, action: { AppAction.passwordGenerator($0) })
+                ).view(value: { $0.passwordGenerator }, action: { AppAction.passwordGenerated($0) })
             ).tabItem {
                 Image(systemName: "person.badge.key.fill")
                 Text("Generator")
