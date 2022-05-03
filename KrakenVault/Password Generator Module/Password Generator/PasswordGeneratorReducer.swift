@@ -13,10 +13,11 @@ func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: Passw
     case let .passwordGenerated(action):
         let effects = passwordGeneratedReducer(state: &state.passwordGenerated, action: action)
         return effects.map { effect in
-            if let action = effect() {
-                return { PasswordGeneratorAction.passwordGenerated(action) }
+            { callback in
+                effect { action in
+                    callback(PasswordGeneratorAction.passwordGenerated(action))
+                }
             }
-            return { nil }
         }
     case .copyPassword:
         return [
@@ -27,15 +28,9 @@ func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: Passw
 }
 
 private func copyPasswordInPasteboardEffect(passwordGenerated: [String]) -> Effect<PasswordGeneratorAction> {
-    {
-        UIPasteboard.general.string = passwordGenerated.joined()
-        return nil
-    }
+    { _ in UIPasteboard.general.string = passwordGenerated.joined() }
 }
 
 private func generateHapticEffect() -> Effect<PasswordGeneratorAction> {
-    {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        return nil
-    }
+    { _ in UIImpactFeedbackGenerator(style: .light).impactOccurred() }
 }

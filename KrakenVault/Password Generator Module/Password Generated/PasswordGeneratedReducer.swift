@@ -28,12 +28,9 @@ func passwordGeneratedReducer(state: inout PasswordGeneratedState, action: Passw
 }
 
 private func generateHapticEffect() -> Effect<PasswordGeneratedAction> {
-    {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        return nil
-    }
+    { _ in UIImpactFeedbackGenerator(style: .light).impactOccurred() }
 }
 
 private func generatePasswordEffect() -> Effect<PasswordGeneratedAction> {
-    { .generate }
+    { callback in callback(.generate) }
 }

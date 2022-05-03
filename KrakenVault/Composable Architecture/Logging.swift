@@ -11,10 +11,11 @@ func logging<Value, Action>(
         let effects = reducer(&value, action)
         let value = value
         return [
-            {
-                print("==> Value: \(value)")
-                print("==> Action: \(action)")
-                return nil
+            { _ in
+                print("Action: \(action)")
+                print("Value:")
+                dump(value)
+                print("=================")
             },
         ] + effects
     }

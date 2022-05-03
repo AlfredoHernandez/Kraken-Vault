@@ -5,7 +5,7 @@
 import Combine
 import SwiftUI
 
-public typealias Effect<Action> = () -> Action?
+public typealias Effect<Action> = (@escaping (Action) -> Void) -> Void
 public typealias Reducer<Value, Action> = (inout Value, Action) -> [Effect<Action>]
 
 public final class Store<Value, Action>: ObservableObject {
@@ -21,9 +21,7 @@ public final class Store<Value, Action>: ObservableObject {
     public func send(_ action: Action) {
         let effects = reducer(&value, action)
         effects.forEach { effect in
-            if let action = effect() {
-                self.send(action)
-            }
+            effect(self.send(_:))
         }
     }
 
