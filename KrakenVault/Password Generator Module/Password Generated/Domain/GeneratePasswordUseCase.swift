@@ -4,22 +4,22 @@
 
 import Foundation
 
-func generatePassword(lenght: Int, specialCharacters: Bool, uppercase: Bool, numbers: Bool) -> [String] {
+func generatePassword(length: Int, specialCharacters: Bool, uppercase: Bool, numbers: Bool) -> [String] {
     // All parameters
     if uppercase && specialCharacters && numbers {
-        return threeParameterPassword(lenght: lenght)
+        return threeParameterPassword(lenght: length)
     }
 
     // Two parameters
     if uppercase && specialCharacters || uppercase && numbers || numbers && specialCharacters {
-        return twoParameterPassword(lenght: lenght, specialCharacters: specialCharacters, uppercase: uppercase, numbers: numbers)
+        return twoParameterPassword(lenght: length, specialCharacters: specialCharacters, uppercase: uppercase, numbers: numbers)
     }
 
     // One parameter
     if uppercase || specialCharacters || numbers {
-        return oneParameterPassword(lenght: lenght, specialCharacters: specialCharacters, uppercase: uppercase, numbers: numbers)
+        return oneParameterPassword(lenght: length, specialCharacters: specialCharacters, uppercase: uppercase, numbers: numbers)
     } else {
-        return lowercasePassword(lenght: lenght)
+        return lowercasePassword(lenght: length)
     }
 }
 

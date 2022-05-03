@@ -9,7 +9,7 @@ func passwordGeneratedReducer(state: inout PasswordGeneratedState, action: Passw
     switch action {
     case .generate:
         state.characters = generatePassword(
-            lenght: Int(state.characterCount),
+            length: Int(state.characterCount),
             specialCharacters: state.includeSpecialChars,
             uppercase: state.includeUppercased,
             numbers: state.includeNumbers

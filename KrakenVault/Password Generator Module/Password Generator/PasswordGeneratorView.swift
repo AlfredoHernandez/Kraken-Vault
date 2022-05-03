@@ -40,7 +40,7 @@ struct PasswordGeneratorView: View {
                                 store.send(.updatePasswordLength($0))
                                 store.send(.passwordGenerated(.generate))
                             }),
-                            in: store.value.passwordGenerated.passwordLenghtRange,
+                            in: store.value.passwordGenerated.passwordLengthRange,
                             step: 1
                         )
                         .accentColor(.accentColor)
