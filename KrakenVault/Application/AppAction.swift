@@ -5,18 +5,18 @@
 import Foundation
 
 enum AppAction {
-    case passwordGenerator(PasswordGeneratorAction)
+    case passwordGenerated(PasswordGeneratorAction)
 }
 
 extension AppAction {
-    public var passwordGenerator: PasswordGeneratorAction? {
+    public var passwordGenerated: PasswordGeneratorAction? {
         get {
-            guard case let .passwordGenerator(value) = self else { return nil }
+            guard case let .passwordGenerated(value) = self else { return nil }
             return value
         }
         set {
-            guard case .passwordGenerator = self, let newValue = newValue else { return }
-            self = .passwordGenerator(newValue)
+            guard case .passwordGenerated = self, let newValue = newValue else { return }
+            self = .passwordGenerated(newValue)
         }
     }
 }

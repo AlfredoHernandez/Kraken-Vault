@@ -5,7 +5,10 @@
 import Foundation
 
 enum PasswordGeneratorAction {
-    case passwordGenerated(PasswordGeneratedAction)
+    case generate
+    case includeSpecialChars(Bool)
+    case includeUppercased(Bool)
+    case includeNumbers(Bool)
     case copyPassword
     case updatePasswordLength(Double)
 }
