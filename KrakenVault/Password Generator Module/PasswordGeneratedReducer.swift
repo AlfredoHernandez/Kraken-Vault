@@ -2,6 +2,7 @@
 //  Copyright © 2022 Jesús Alfredo Hernández Alarcón. All rights reserved.
 //
 
+import ComposableArchitecture
 import Foundation
 import UIKit
 
@@ -36,13 +37,13 @@ func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: Passw
 }
 
 private func copyPasswordInPasteboardEffect(passwordGenerated: [String]) -> Effect<PasswordGeneratorAction> {
-    Effect { _ in UIPasteboard.general.string = passwordGenerated.joined() }
+    .fireAndForget { UIPasteboard.general.string = passwordGenerated.joined() }
 }
 
 private func generateHapticEffect() -> Effect<PasswordGeneratorAction> {
-    Effect { _ in UIImpactFeedbackGenerator(style: .light).impactOccurred() }
+    .fireAndForget { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
 }
 
 private func generatePasswordEffect() -> Effect<PasswordGeneratorAction> {
-    Effect { callback in callback(.generate) }
+    .sync { .generate }
 }
