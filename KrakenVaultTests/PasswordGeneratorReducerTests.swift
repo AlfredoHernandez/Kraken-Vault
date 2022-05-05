@@ -14,6 +14,24 @@ class PasswordGeneratorReducerTests: XCTestCase {
         XCTAssertEqual(state, .fixture(characterCount: 16))
         XCTAssertTrue(effects.isEmpty, "Expected no side effects")
     }
+
+    func test_includeNumbers_includesNumbersOnPasswordGeneration() {
+        var state: PasswordGeneratorState = .fixture(includeNumbers: false)
+
+        _ = passwordGeneratorReducer(state: &state, action: .includeNumbers(true))
+
+        XCTAssertEqual(state, .fixture(includeNumbers: true))
+    }
+
+    func test_includeNumbers_generatesPasswordAsSideEffect() {
+        var state: PasswordGeneratorState = .fixture()
+
+        let effects = passwordGeneratorReducer(state: &state, action: .includeNumbers(true))
+
+        _ = effects.last?.sink { action in
+            XCTAssertEqual(action, .generate, "Expected to `generate` password")
+        }
+    }
 }
 
 extension PasswordGeneratorState {
