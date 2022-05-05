@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct PasswordGeneratorState {
+struct PasswordGeneratorState: Equatable {
     let passwordLengthRange = 6.0 ... 32.0
     let alphabet = PasswordComponents.alphabet
     let specialCharactersArray = PasswordComponents.specialCharactersArray
