@@ -68,6 +68,36 @@ class PasswordGeneratorReducerTests: XCTestCase {
             XCTAssertEqual(action, .generate, "Expected to `generate` password")
         }
     }
+
+    func test_copyPassword_copyPasswordOnPasteboardAndGeneratesFeedbackImpact() {
+        var state: PasswordGeneratorState = .fixture(characters: ["A", "N", "Y"])
+
+        let effects = passwordGeneratorReducer(state: &state, action: .copyPassword)
+        XCTAssertEqual(effects.count, 2, "Expected to generate 2 side effects")
+
+        _ = effects[0].sink { _ in
+            XCTFail("Expected to no produce more actions")
+        }
+        XCTAssertEqual(UIPasteboard.general.string, "ANY")
+
+        _ = effects[1].sink { _ in
+            XCTFail("Expected to no produce more actions")
+        }
+    }
+
+    func test_generate_generatesPassword() {
+        let characterCount: Double = 16
+        var state: PasswordGeneratorState = .fixture(characters: [], characterCount: characterCount)
+
+        let effects = passwordGeneratorReducer(state: &state, action: .generate)
+
+        XCTAssertGreaterThan(state.characters.count, 0, "Expected to generate a password with \(Int(characterCount)) chars")
+        XCTAssertEqual(effects.count, 1)
+
+        _ = effects[0].sink { _ in
+            XCTFail("Expected to no produce more actions")
+        }
+    }
 }
 
 extension PasswordGeneratorState {
