@@ -4,7 +4,7 @@
 
 import Foundation
 
-enum PasswordGeneratorAction {
+enum PasswordGeneratorAction: Equatable {
     case generate
     case includeSpecialChars(Bool)
     case includeUppercased(Bool)

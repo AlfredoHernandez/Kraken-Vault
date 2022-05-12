@@ -10,10 +10,11 @@
 		3808FBB8281DED4700BF6A4E /* KrakenVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBB7281DED4700BF6A4E /* KrakenVaultApp.swift */; };
 		3808FBBC281DED4700BF6A4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3808FBBB281DED4700BF6A4E /* Assets.xcassets */; };
 		3808FBBF281DED4700BF6A4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3808FBBE281DED4700BF6A4E /* Preview Assets.xcassets */; };
-		3808FBC9281DED4700BF6A4E /* KrakenVaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBC8281DED4700BF6A4E /* KrakenVaultTests.swift */; };
+		3808FBC9281DED4700BF6A4E /* PasswordGeneratorReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBC8281DED4700BF6A4E /* PasswordGeneratorReducerTests.swift */; };
 		3808FBF3281DFB4F00BF6A4E /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF2281DFB4F00BF6A4E /* AppAction.swift */; };
 		3808FBF5281DFB6400BF6A4E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF4281DFB6400BF6A4E /* AppState.swift */; };
 		3808FBF7281DFB7B00BF6A4E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */; };
+		3839D776282D8B6300074923 /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */; };
 		383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 383D1DDC282307C80066C185 /* ComposableArchitecture */; };
 		389E54FC2820699500F52D68 /* KrakenVaultMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */; };
 		389E54FF282090F500F52D68 /* PasswordVaultItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */; };
@@ -43,10 +44,11 @@
 		3808FBBB281DED4700BF6A4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3808FBBE281DED4700BF6A4E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3808FBC4281DED4700BF6A4E /* KrakenVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KrakenVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3808FBC8281DED4700BF6A4E /* KrakenVaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakenVaultTests.swift; sourceTree = "<group>"; };
+		3808FBC8281DED4700BF6A4E /* PasswordGeneratorReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorReducerTests.swift; sourceTree = "<group>"; };
 		3808FBF2281DFB4F00BF6A4E /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		3808FBF4281DFB6400BF6A4E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakenVaultMainView.swift; sourceTree = "<group>"; };
 		389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultItemView.swift; sourceTree = "<group>"; };
 		389E5500282091BB00F52D68 /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
@@ -119,7 +121,8 @@
 		3808FBC7281DED4700BF6A4E /* KrakenVaultTests */ = {
 			isa = PBXGroup;
 			children = (
-				3808FBC8281DED4700BF6A4E /* KrakenVaultTests.swift */,
+				3808FBC8281DED4700BF6A4E /* PasswordGeneratorReducerTests.swift */,
+				3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */,
 			);
 			path = KrakenVaultTests;
 			sourceTree = "<group>";
@@ -295,7 +298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3808FBC9281DED4700BF6A4E /* KrakenVaultTests.swift in Sources */,
+				3808FBC9281DED4700BF6A4E /* PasswordGeneratorReducerTests.swift in Sources */,
+				3839D776282D8B6300074923 /* ComposableArchitectureTestSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +350,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -406,6 +411,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -492,6 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HS399QXLRD;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -512,6 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HS399QXLRD;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -561,8 +569,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AlfredoHernandez/composable-architecture.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				kind = exactVersion;
+				version = 0.2.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
