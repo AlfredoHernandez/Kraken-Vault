@@ -39,7 +39,7 @@ func lowercasePassword(lenght: Int) -> [String] {
 }
 
 func oneParameterPassword(lenght: Int, specialCharacters: Bool, uppercase: Bool, numbers: Bool) -> [String] {
-    var password: [String] = [""]
+    var password: [String] = []
     var uppercasedAlphabet: [String] = []
 
     for character in PasswordComponents.alphabet {
@@ -104,7 +104,7 @@ func oneParameterPassword(lenght: Int, specialCharacters: Bool, uppercase: Bool,
 }
 
 func twoParameterPassword(lenght: Int, specialCharacters: Bool, uppercase: Bool, numbers: Bool) -> [String] {
-    var password: [String] = [""]
+    var password: [String] = []
     var uppercasedAlphabet: [String] = []
 
     for character in PasswordComponents.alphabet {
@@ -183,7 +183,7 @@ func twoParameterPassword(lenght: Int, specialCharacters: Bool, uppercase: Bool,
 }
 
 func threeParameterPassword(lenght: Int) -> [String] {
-    var password: [String] = [""]
+    var password: [String] = []
     var uppercasedAlphabet: [String] = []
 
     for character in PasswordComponents.alphabet {

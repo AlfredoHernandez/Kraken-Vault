@@ -4,7 +4,6 @@
 
 @testable import KrakenVault
 import ComposableArchitecture
-import SwiftUI
 import XCTest
 
 class PasswordGeneratorReducerTests: XCTestCase {
