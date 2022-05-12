@@ -15,7 +15,9 @@ func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: Passw
             uppercase: state.includeUppercased,
             numbers: state.includeNumbers
         )
-        return [generateHapticEffect()]
+        return [
+            //            generateHapticEffect()
+        ]
     case let .includeNumbers(withNumbers):
         state.includeNumbers = withNumbers
         return [generatePasswordEffect()]
@@ -31,7 +33,7 @@ func passwordGeneratorReducer(state: inout PasswordGeneratorState, action: Passw
     case .copyPassword:
         return [
             copyPasswordInPasteboardEffect(passwordGenerated: state.characters),
-            generateHapticEffect(),
+//            generateHapticEffect(),
         ]
     }
 }
