@@ -22,7 +22,7 @@ struct KrakenVaultMainView: View {
                 Image(systemName: "person.badge.key.fill")
                 Text("Generator")
             }
-        }.accentColor(.green)
+        }.accentColor(.teal)
     }
 }
 
