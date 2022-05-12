@@ -7,22 +7,19 @@ import ComposableArchitecture
 import SwiftUI
 import XCTest
 
-enum StepType {
-    case send
-    case receive
-}
-
 struct Step<Value: Equatable, Action> {
+    enum StepType {
+        case send(Action, (inout Value) -> Void)
+        case receive(Action, (inout Value) -> Void)
+        case fireAndForget
+    }
+
     let type: StepType
-    let action: Action
-    let update: (inout Value) -> Void
     let file: StaticString
     let line: UInt
 
-    init(_ type: StepType, _ action: Action, _ update: @escaping (inout Value) -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    init(_ type: StepType, file: StaticString = #filePath, line: UInt = #line) {
         self.type = type
-        self.action = action
-        self.update = update
         self.file = file
         self.line = line
     }
@@ -40,30 +37,48 @@ func CAAssertState<Value: Equatable, Action: Equatable>(
     steps.forEach { step in
         var expected = state
         switch step.type {
-        case .send:
+        case let .send(action, update):
             if !effects.isEmpty {
                 XCTFail("Action sent before handling \(effects.count) pending effect(s).", file: step.file, line: step.line)
             }
-            effects.append(contentsOf: reducer(&state, step.action))
-        case .receive:
+            effects.append(contentsOf: reducer(&state, action))
+            update(&expected)
+            XCTAssertEqual(state, expected, file: step.file, line: step.line)
+        case let .receive(expectedAction, update):
             guard !effects.isEmpty else {
                 XCTFail("No pending effects to receive from", file: step.file, line: step.line)
                 break
             }
             let expectation = XCTestExpectation(description: "Wait for receiveCompletion")
-            var action: Action?
+            var action: Action!
             let effect = effects.removeFirst()
             _ = effect.sink(receiveCompletion: { _ in
                 expectation.fulfill()
             }, receiveValue: { action = $0 })
-            if XCTWaiter.wait(for: [expectation], timeout: 1) != .completed {
+            if XCTWaiter.wait(for: [expectation], timeout: 1.0) != .completed {
                 XCTFail("Timed out waiting for the effect to complete", file: step.file, line: step.line)
             }
-            XCTAssertEqual(action, step.action, file: step.file, line: step.line)
-            effects.append(contentsOf: reducer(&state, step.action))
+            XCTAssertEqual(action, expectedAction, file: step.file, line: step.line)
+            effects.append(contentsOf: reducer(&state, action))
+            update(&expected)
+            XCTAssertEqual(state, expected, file: step.file, line: step.line)
+        case .fireAndForget:
+            guard !effects.isEmpty else {
+                XCTFail("No pending effects to run", file: step.file, line: step.line)
+                break
+            }
+            let effect = effects.removeFirst()
+            let receivedCompletion = XCTestExpectation(description: "receivedCompletion")
+            _ = effect.sink(
+                receiveCompletion: { _ in
+                    receivedCompletion.fulfill()
+                },
+                receiveValue: { _ in XCTFail() }
+            )
+            if XCTWaiter.wait(for: [receivedCompletion], timeout: 1.0) != .completed {
+                XCTFail("Timed out waiting for the effect to complete", file: step.file, line: step.line)
+            }
         }
-        step.update(&expected)
-        XCTAssertEqual(state, expected, file: step.file, line: step.line)
     }
 
     if !effects.isEmpty {
@@ -76,7 +91,7 @@ class PasswordGeneratorReducerTests: XCTestCase {
         CAAssertState(
             initialValue: .fixture(characterCount: 10),
             reducer: passwordGeneratorReducer,
-            steps: Step(.send, .updatePasswordLength(16)) { $0.characterCount = 16 }
+            steps: Step(.send(.updatePasswordLength(16)) { $0.characterCount = 16 })
         )
     }
 
@@ -85,8 +100,9 @@ class PasswordGeneratorReducerTests: XCTestCase {
             initialValue: .fixture(characterCount: 0, includeNumbers: false),
             reducer: passwordGeneratorReducer,
             steps:
-            Step(.send, .includeNumbers(true)) { $0.includeNumbers = true },
-            Step(.receive, .generate) { $0.characters = [] }
+            Step(.send(.includeNumbers(true)) { $0.includeNumbers = true }),
+            Step(.receive(.generate) { $0.characters = [] }),
+            Step(.fireAndForget)
         )
     }
 
@@ -95,8 +111,9 @@ class PasswordGeneratorReducerTests: XCTestCase {
             initialValue: .fixture(characterCount: 0, includeSpecialChars: false),
             reducer: passwordGeneratorReducer,
             steps:
-            Step(.send, .includeSpecialChars(true)) { $0.includeSpecialChars = true },
-            Step(.receive, .generate) { $0.characters = [] }
+            Step(.send(.includeSpecialChars(true)) { $0.includeSpecialChars = true }),
+            Step(.receive(.generate) { $0.characters = [] }),
+            Step(.fireAndForget)
         )
     }
 
@@ -105,48 +122,23 @@ class PasswordGeneratorReducerTests: XCTestCase {
             initialValue: .fixture(characterCount: 0, includeUppercased: false),
             reducer: passwordGeneratorReducer,
             steps:
-            Step(.send, .includeUppercased(true)) { $0.includeUppercased = true },
-            Step(.receive, .generate) { $0.characters = [] }
+            Step(.send(.includeUppercased(true)) { $0.includeUppercased = true }),
+            Step(.receive(.generate) { $0.characters = [] }),
+            Step(.fireAndForget)
         )
     }
 
     func test_copyPassword_copyPasswordOnPasteboardAndGeneratesFeedbackImpact() {
-//        var state: PasswordGeneratorState = .fixture(characters: ["A", "N", "Y"])
-//
-//        let effects = passwordGeneratorReducer(state: &state, action: .copyPassword)
-//        XCTAssertEqual(effects.count, 2, "Expected to generate 2 side effects")
-//
-//        _ = effects[0].sink { _ in
-//            XCTFail("Expected to no produce more actions")
-//        }
-//        XCTAssertEqual(UIPasteboard.general.string, "ANY")
-
-//        CAAssertState(
-//            initialValue: .fixture(characters: ["A", "N", "Y"]),
-//            reducer: passwordGeneratorReducer,
-//            steps:
-//            Step(.send, .copyPassword) { $0.characters = ["A", "N", "Y"] }
-//        )
-//        XCTAssertEqual(UIPasteboard.general.string, "ANY")
-
-//        _ = effects[1].sink { _ in
-//            XCTFail("Expected to no produce more actions")
-//        }
+        CAAssertState(
+            initialValue: .fixture(characters: ["A", "N", "Y"]),
+            reducer: passwordGeneratorReducer,
+            steps:
+            Step(.send(.copyPassword) { $0.characters = ["A", "N", "Y"] }),
+            Step(.fireAndForget),
+            Step(.fireAndForget)
+        )
+        XCTAssertEqual(UIPasteboard.general.string, "ANY")
     }
-
-//    func test_generate_generatesPassword() {
-//        let characterCount: Double = 16
-//        var state: PasswordGeneratorState = .fixture(characters: [], characterCount: characterCount)
-//
-//        let effects = passwordGeneratorReducer(state: &state, action: .generate)
-//
-//        XCTAssertGreaterThan(state.characters.count, 0, "Expected to generate a password with \(Int(characterCount)) chars")
-//        XCTAssertEqual(effects.count, 1)
-//
-//        _ = effects[0].sink { _ in
-//            XCTFail("Expected to no produce more actions")
-//        }
-//    }
 }
 
 extension PasswordGeneratorState {
