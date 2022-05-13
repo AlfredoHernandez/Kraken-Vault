@@ -4,6 +4,11 @@
 
 import ComposableArchitecture
 
-let appReducer: Reducer<AppState, AppAction> = combine(
-    pullback(passwordGeneratorReducer, value: \AppState.passwordGenerator, action: \AppAction.passwordGenerated)
+let appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
+    pullback(
+        passwordGeneratorReducer,
+        value: \AppState.passwordGenerator,
+        action: \AppAction.passwordGenerated,
+        environment: { ($0.copyToPasteboard, $0.generateFeedbackImpact, $0.generatePassword) }
+    )
 )

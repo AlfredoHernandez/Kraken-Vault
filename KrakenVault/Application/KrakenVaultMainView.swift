@@ -16,7 +16,17 @@ struct KrakenVaultMainView: View {
 
             PasswordGeneratorView(
                 store: Store(
-                    initialValue: AppState(), reducer: appReducer
+                    initialValue: AppState(),
+                    reducer: appReducer,
+                    environment: AppEnvironment(
+                        copyToPasteboard: { passwordGenerated in
+                            UIPasteboard.general.string = passwordGenerated.joined()
+                        },
+                        generateFeedbackImpact: {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        },
+                        generatePassword: generatePassword
+                    )
                 ).view(value: { $0.passwordGenerator }, action: { AppAction.passwordGenerated($0) })
             ).tabItem {
                 Image(systemName: "person.badge.key.fill")

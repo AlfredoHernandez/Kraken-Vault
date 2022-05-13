@@ -23,9 +23,10 @@ public struct Step<Value: Equatable, Action> {
     }
 }
 
-public func CAAssertState<Value: Equatable, Action: Equatable>(
+public func CAAssertState<Value: Equatable, Action: Equatable, Environment>(
     initialValue: Value,
-    reducer: Reducer<Value, Action>,
+    reducer: Reducer<Value, Action, Environment>,
+    environment: Environment,
     steps: Step<Value, Action>...,
     file: StaticString = #filePath,
     line: UInt = #line
@@ -39,7 +40,7 @@ public func CAAssertState<Value: Equatable, Action: Equatable>(
             if !effects.isEmpty {
                 XCTFail("Action sent before handling \(effects.count) pending effect(s).", file: step.file, line: step.line)
             }
-            effects.append(contentsOf: reducer(&state, action))
+            effects.append(contentsOf: reducer(&state, action, environment))
             update(&expected)
             XCTAssertEqual(state, expected, file: step.file, line: step.line)
         case let .receive(expectedAction, update):
@@ -57,7 +58,7 @@ public func CAAssertState<Value: Equatable, Action: Equatable>(
                 XCTFail("Timed out waiting for the effect to complete", file: step.file, line: step.line)
             }
             XCTAssertEqual(action, expectedAction, file: step.file, line: step.line)
-            effects.append(contentsOf: reducer(&state, action))
+            effects.append(contentsOf: reducer(&state, action, environment))
             update(&expected)
             XCTAssertEqual(state, expected, file: step.file, line: step.line)
         case .fireAndForget:

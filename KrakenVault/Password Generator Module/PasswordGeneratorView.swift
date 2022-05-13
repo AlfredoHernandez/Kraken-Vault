@@ -70,7 +70,6 @@ struct PasswordGeneratorView: View {
                                     store.value.characterCount
                                 }, set: {
                                     store.send(.updatePasswordLength($0))
-                                    store.send(.generate)
                                 }),
                                 in: store.value.passwordLengthRange,
                                 step: 1
@@ -131,9 +130,33 @@ struct PasswordGeneratorView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        PasswordGeneratorView(
-            store: Store(initialValue: PasswordGeneratorState(), reducer: passwordGeneratorReducer)
-        )
-        .preferredColorScheme(.dark)
+        PasswordGeneratorTestPreview()
+    }
+}
+
+struct PasswordGeneratorTestPreview: View {
+    @State var impactGeneratedCallCount = 0
+    @State var lastPasswordCopied = "none"
+
+    var body: some View {
+        VStack {
+            PasswordGeneratorView(
+                store: Store(
+                    initialValue: PasswordGeneratorState(),
+                    reducer: passwordGeneratorReducer,
+                    environment: PasswordGeneratorEnvironment(
+                        copyToPasteboard: { data in
+                            lastPasswordCopied = data.joined()
+                        },
+                        generateFeedbackImpact: { impactGeneratedCallCount += 1 },
+                        generatePassword: generatePassword
+                    )
+                )
+            )
+            VStack {
+                Text("Feedback impact generated: \(impactGeneratedCallCount)")
+                Text("Last password copied: \(lastPasswordCopied)")
+            }
+        }.preferredColorScheme(.dark)
     }
 }

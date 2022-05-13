@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum AppAction {
     case passwordGenerated(PasswordGeneratorAction)
@@ -20,3 +21,9 @@ extension AppAction {
         }
     }
 }
+
+typealias AppEnvironment = (
+    copyToPasteboard: ([String]) -> Void,
+    generateFeedbackImpact: () -> Void,
+    generatePassword: (_ length: Int, _ specialCharacters: Bool, _ uppercase: Bool, _ numbers: Bool) -> [String]
+)

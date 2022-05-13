@@ -4,7 +4,7 @@
 
 import Foundation
 
-func generatePassword(length: Int, specialCharacters: Bool, uppercase: Bool, numbers: Bool) -> [String] {
+public func generatePassword(length: Int, specialCharacters: Bool, uppercase: Bool, numbers: Bool) -> [String] {
     // All parameters
     if uppercase && specialCharacters && numbers {
         return threeParameterPassword(lenght: length)
