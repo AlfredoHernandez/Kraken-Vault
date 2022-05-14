@@ -130,33 +130,16 @@ struct PasswordGeneratorView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        PasswordGeneratorTestPreview()
-    }
-}
-
-struct PasswordGeneratorTestPreview: View {
-    @State var impactGeneratedCallCount = 0
-    @State var lastPasswordCopied = "none"
-
-    var body: some View {
-        VStack {
-            PasswordGeneratorView(
-                store: Store(
-                    initialValue: PasswordGeneratorState(),
-                    reducer: passwordGeneratorReducer,
-                    environment: PasswordGeneratorEnvironment(
-                        copyToPasteboard: { data in
-                            lastPasswordCopied = data.joined()
-                        },
-                        generateFeedbackImpact: { impactGeneratedCallCount += 1 },
-                        generatePassword: generatePassword
-                    )
+        PasswordGeneratorView(
+            store: Store(
+                initialValue: PasswordGeneratorState(),
+                reducer: passwordGeneratorReducer,
+                environment: PasswordGeneratorEnvironment(
+                    copyToPasteboard: { data in },
+                    generateFeedbackImpact: { },
+                    generatePassword: generatePassword
                 )
             )
-            VStack {
-                Text("Feedback impact generated: \(impactGeneratedCallCount)")
-                Text("Last password copied: \(lastPasswordCopied)")
-            }
-        }.preferredColorScheme(.dark)
+        )
     }
 }
