@@ -24,6 +24,7 @@ struct VaultView: View {
                 }
                 .onDelete { index in store.send(.delete(index)) }
             }
+            .listStyle(PlainListStyle())
             .searchable(
                 text: $query,
                 placement: .navigationBarDrawer(displayMode: .automatic),
