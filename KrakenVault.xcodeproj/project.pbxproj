@@ -17,6 +17,12 @@
 		3839D776282D8B6300074923 /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */; };
 		383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 383D1DDC282307C80066C185 /* ComposableArchitecture */; };
 		38527C9F282F31F800ACC933 /* App+UIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38527C9E282F31F800ACC933 /* App+UIActions.swift */; };
+		3893E0E52837FE88007A80AF /* KrakenVaultCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */; };
+		3893E0ED2837FE88007A80AF /* KrakenVaultCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 3893E0DF2837FE87007A80AF /* KrakenVaultCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3893E0F02837FE88007A80AF /* KrakenVaultCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */; };
+		3893E0F12837FE88007A80AF /* KrakenVaultCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3893E0FA2837FEAE007A80AF /* LocalVaultLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3893E0F92837FEAE007A80AF /* LocalVaultLoader.swift */; };
+		3893E0FE2838008E007A80AF /* LocalVaultLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3893E0FC28380039007A80AF /* LocalVaultLoaderTests.swift */; };
 		389E54FC2820699500F52D68 /* KrakenVaultMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */; };
 		389E54FF282090F500F52D68 /* PasswordVaultItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */; };
 		389E5501282091BB00F52D68 /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E5500282091BB00F52D68 /* VaultView.swift */; };
@@ -37,7 +43,42 @@
 			remoteGlobalIDString = 3808FBB3281DED4700BF6A4E;
 			remoteInfo = KrakenVault;
 		};
+		3893E0E62837FE88007A80AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3808FBAC281DED4700BF6A4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3893E0DC2837FE87007A80AF;
+			remoteInfo = KrakenVaultCore;
+		};
+		3893E0E82837FE88007A80AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3808FBAC281DED4700BF6A4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3808FBB3281DED4700BF6A4E;
+			remoteInfo = KrakenVault;
+		};
+		3893E0EE2837FE88007A80AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3808FBAC281DED4700BF6A4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3893E0DC2837FE87007A80AF;
+			remoteInfo = KrakenVaultCore;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3893E0F22837FE88007A80AF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3893E0F12837FE88007A80AF /* KrakenVaultCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3808FBB4281DED4700BF6A4E /* KrakenVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrakenVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +92,11 @@
 		3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		38527C9E282F31F800ACC933 /* App+UIActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+UIActions.swift"; sourceTree = "<group>"; };
+		3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KrakenVaultCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3893E0DF2837FE87007A80AF /* KrakenVaultCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KrakenVaultCore.h; sourceTree = "<group>"; };
+		3893E0E42837FE88007A80AF /* KrakenVaultCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KrakenVaultCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3893E0F92837FEAE007A80AF /* LocalVaultLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVaultLoader.swift; sourceTree = "<group>"; };
+		3893E0FC28380039007A80AF /* LocalVaultLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVaultLoaderTests.swift; sourceTree = "<group>"; };
 		389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakenVaultMainView.swift; sourceTree = "<group>"; };
 		389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultItemView.swift; sourceTree = "<group>"; };
 		389E5500282091BB00F52D68 /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
@@ -68,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3893E0F02837FE88007A80AF /* KrakenVaultCore.framework in Frameworks */,
 				383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +126,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3893E0DA2837FE87007A80AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3893E0E12837FE88007A80AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3893E0E52837FE88007A80AF /* KrakenVaultCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,6 +149,8 @@
 			children = (
 				3808FBB6281DED4700BF6A4E /* KrakenVault */,
 				3808FBC7281DED4700BF6A4E /* KrakenVaultTests */,
+				3893E0DE2837FE87007A80AF /* KrakenVaultCore */,
+				3893E0EA2837FE88007A80AF /* KrakenVaultCoreTests */,
 				3808FBB5281DED4700BF6A4E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +160,8 @@
 			children = (
 				3808FBB4281DED4700BF6A4E /* KrakenVault.app */,
 				3808FBC4281DED4700BF6A4E /* KrakenVaultTests.xctest */,
+				3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */,
+				3893E0E42837FE88007A80AF /* KrakenVaultCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +221,23 @@
 			path = "Password Generator Module";
 			sourceTree = "<group>";
 		};
+		3893E0DE2837FE87007A80AF /* KrakenVaultCore */ = {
+			isa = PBXGroup;
+			children = (
+				3893E0DF2837FE87007A80AF /* KrakenVaultCore.h */,
+				3893E0F92837FEAE007A80AF /* LocalVaultLoader.swift */,
+			);
+			path = KrakenVaultCore;
+			sourceTree = "<group>";
+		};
+		3893E0EA2837FE88007A80AF /* KrakenVaultCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				3893E0FC28380039007A80AF /* LocalVaultLoaderTests.swift */,
+			);
+			path = KrakenVaultCoreTests;
+			sourceTree = "<group>";
+		};
 		389E54FD282090CE00F52D68 /* Vault Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +258,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3893E0D82837FE87007A80AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3893E0ED2837FE88007A80AF /* KrakenVaultCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		3808FBB3281DED4700BF6A4E /* KrakenVault */ = {
 			isa = PBXNativeTarget;
@@ -183,10 +277,12 @@
 				3808FBB0281DED4700BF6A4E /* Sources */,
 				3808FBB1281DED4700BF6A4E /* Frameworks */,
 				3808FBB2281DED4700BF6A4E /* Resources */,
+				3893E0F22837FE88007A80AF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3893E0EF2837FE88007A80AF /* PBXTargetDependency */,
 			);
 			name = KrakenVault;
 			packageProductDependencies = (
@@ -214,6 +310,43 @@
 			productReference = 3808FBC4281DED4700BF6A4E /* KrakenVaultTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3893E0DC2837FE87007A80AF /* KrakenVaultCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3893E0F72837FE88007A80AF /* Build configuration list for PBXNativeTarget "KrakenVaultCore" */;
+			buildPhases = (
+				3893E0D82837FE87007A80AF /* Headers */,
+				3893E0D92837FE87007A80AF /* Sources */,
+				3893E0DA2837FE87007A80AF /* Frameworks */,
+				3893E0DB2837FE87007A80AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KrakenVaultCore;
+			productName = KrakenVaultCore;
+			productReference = 3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3893E0E32837FE88007A80AF /* KrakenVaultCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3893E0F82837FE88007A80AF /* Build configuration list for PBXNativeTarget "KrakenVaultCoreTests" */;
+			buildPhases = (
+				3893E0E02837FE88007A80AF /* Sources */,
+				3893E0E12837FE88007A80AF /* Frameworks */,
+				3893E0E22837FE88007A80AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3893E0E72837FE88007A80AF /* PBXTargetDependency */,
+				3893E0E92837FE88007A80AF /* PBXTargetDependency */,
+			);
+			name = KrakenVaultCoreTests;
+			productName = KrakenVaultCoreTests;
+			productReference = 3893E0E42837FE88007A80AF /* KrakenVaultCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -221,7 +354,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = "J. Alfredo Hernández Alarcón";
 				TargetAttributes = {
@@ -231,6 +364,14 @@
 					3808FBC3281DED4700BF6A4E = {
 						CreatedOnToolsVersion = 13.3.1;
 						TestTargetID = 3808FBB3281DED4700BF6A4E;
+					};
+					3893E0DC2837FE87007A80AF = {
+						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1340;
+					};
+					3893E0E32837FE88007A80AF = {
+						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -252,6 +393,8 @@
 			targets = (
 				3808FBB3281DED4700BF6A4E /* KrakenVault */,
 				3808FBC3281DED4700BF6A4E /* KrakenVaultTests */,
+				3893E0DC2837FE87007A80AF /* KrakenVaultCore */,
+				3893E0E32837FE88007A80AF /* KrakenVaultCoreTests */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +410,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3808FBC2281DED4700BF6A4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3893E0DB2837FE87007A80AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3893E0E22837FE88007A80AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -307,6 +464,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3893E0D92837FE87007A80AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3893E0FA2837FEAE007A80AF /* LocalVaultLoader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3893E0E02837FE88007A80AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3893E0FE2838008E007A80AF /* LocalVaultLoaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -314,6 +487,21 @@
 			isa = PBXTargetDependency;
 			target = 3808FBB3281DED4700BF6A4E /* KrakenVault */;
 			targetProxy = 3808FBC5281DED4700BF6A4E /* PBXContainerItemProxy */;
+		};
+		3893E0E72837FE88007A80AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3893E0DC2837FE87007A80AF /* KrakenVaultCore */;
+			targetProxy = 3893E0E62837FE88007A80AF /* PBXContainerItemProxy */;
+		};
+		3893E0E92837FE88007A80AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3808FBB3281DED4700BF6A4E /* KrakenVault */;
+			targetProxy = 3893E0E82837FE88007A80AF /* PBXContainerItemProxy */;
+		};
+		3893E0EF2837FE88007A80AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3893E0DC2837FE87007A80AF /* KrakenVaultCore */;
+			targetProxy = 3893E0EE2837FE88007A80AF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -437,6 +625,7 @@
 		3808FBD9281DED4700BF6A4E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -467,6 +656,7 @@
 		3808FBDA281DED4700BF6A4E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -502,7 +692,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HS399QXLRD;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -523,7 +712,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HS399QXLRD;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -533,6 +721,122 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KrakenVault.app/KrakenVault";
+			};
+			name = Release;
+		};
+		3893E0F32837FE88007A80AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = HS399QXLRD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 J. Alfredo Hernández Alarcón. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.alfredohdz.KrakenVaultCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3893E0F42837FE88007A80AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = HS399QXLRD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 J. Alfredo Hernández Alarcón. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.alfredohdz.KrakenVaultCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3893E0F52837FE88007A80AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HS399QXLRD;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.alfredohdz.KrakenVaultCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3893E0F62837FE88007A80AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HS399QXLRD;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.alfredohdz.KrakenVaultCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -562,6 +866,24 @@
 			buildConfigurations = (
 				3808FBDC281DED4700BF6A4E /* Debug */,
 				3808FBDD281DED4700BF6A4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3893E0F72837FE88007A80AF /* Build configuration list for PBXNativeTarget "KrakenVaultCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3893E0F32837FE88007A80AF /* Debug */,
+				3893E0F42837FE88007A80AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3893E0F82837FE88007A80AF /* Build configuration list for PBXNativeTarget "KrakenVaultCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3893E0F52837FE88007A80AF /* Debug */,
+				3893E0F62837FE88007A80AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

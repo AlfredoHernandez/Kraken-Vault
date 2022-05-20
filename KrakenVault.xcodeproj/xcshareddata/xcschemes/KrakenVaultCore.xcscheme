@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1330"
+   LastUpgradeVersion = "1340"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3808FBB3281DED4700BF6A4E"
-               BuildableName = "KrakenVault.app"
-               BlueprintName = "KrakenVault"
+               BlueprintIdentifier = "3893E0DC2837FE87007A80AF"
+               BuildableName = "KrakenVaultCore.framework"
+               BlueprintName = "KrakenVaultCore"
                ReferencedContainer = "container:KrakenVault.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3808FBB3281DED4700BF6A4E"
-            BuildableName = "KrakenVault.app"
-            BlueprintName = "KrakenVault"
+            BlueprintIdentifier = "3893E0DC2837FE87007A80AF"
+            BuildableName = "KrakenVaultCore.framework"
+            BlueprintName = "KrakenVaultCore"
             ReferencedContainer = "container:KrakenVault.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -42,16 +42,6 @@
          <TestableReference
             skipped = "NO"
             testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3808FBC3281DED4700BF6A4E"
-               BuildableName = "KrakenVaultTests.xctest"
-               BlueprintName = "KrakenVaultTests"
-               ReferencedContainer = "container:KrakenVault.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3893E0E32837FE88007A80AF"
@@ -72,16 +62,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3808FBB3281DED4700BF6A4E"
-            BuildableName = "KrakenVault.app"
-            BlueprintName = "KrakenVault"
-            ReferencedContainer = "container:KrakenVault.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -89,16 +69,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3808FBB3281DED4700BF6A4E"
-            BuildableName = "KrakenVault.app"
-            BlueprintName = "KrakenVault"
+            BlueprintIdentifier = "3893E0DC2837FE87007A80AF"
+            BuildableName = "KrakenVaultCore.framework"
+            BlueprintName = "KrakenVaultCore"
             ReferencedContainer = "container:KrakenVault.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

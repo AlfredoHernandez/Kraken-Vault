@@ -9,18 +9,33 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>KrakenVaultCore.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>3808FBB3281DED4700BF6A4E</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>3808FBC3281DED4700BF6A4E</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
+		</dict>
+		<key>3893E0DC2837FE87007A80AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3893E0E32837FE88007A80AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
