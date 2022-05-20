@@ -22,19 +22,9 @@ let store = Store(
         copyToPasteboard: copyToPasteboard,
         generateFeedbackImpact: generateFeedbackImpact,
         generatePassword: generatePassword,
-        vaultItemsStore: localVaultLoader
+        vaultItemsStore: localVaultLoader,
+        dispatchQueueScheduler: DispatchQueue.main.eraseToAnyScheduler()
     )
 )
 
-let localVaultLoader = LocalVaultLoader(store: SampleStore())
-
-class SampleStore: VaultStore {
-    func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
-        completion(.success([
-            .init(name: "Facebook", password: "1234556", url: URL(string: "https://any-url.com/")!),
-            .init(name: "Twitter", password: "1234556", url: URL(string: "https://any-url.com/")!),
-            .init(name: "WhatsApp", password: "1234556", url: URL(string: "https://any-url.com/")!),
-            .init(name: "Telegram", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        ]))
-    }
-}
+let localVaultLoader = LocalVaultLoader(store: TestVaultStore())

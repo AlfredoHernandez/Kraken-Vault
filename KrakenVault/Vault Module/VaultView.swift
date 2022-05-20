@@ -5,6 +5,7 @@
 import Combine
 import ComposableArchitecture
 import KrakenVaultCore
+import PowerfulCombine
 import SwiftUI
 
 extension LocalVaultLoader {
@@ -26,12 +27,14 @@ enum PasswordVaultAction {
     case loadedVault([VaultItem])
 }
 
-func vaultReducer(state: inout PasswordVaultState, action: PasswordVaultAction, environment: LocalVaultLoader) -> [Effect<PasswordVaultAction>] {
+typealias VaultEnvironment = (loader: LocalVaultLoader, scheduler: AnyDispatchQueueScheduler)
+
+func vaultReducer(state: inout PasswordVaultState, action: PasswordVaultAction, environment: VaultEnvironment) -> [Effect<PasswordVaultAction>] {
     switch action {
     case .loadVault:
         return [
-            environment.publisher()
-                .receive(on: DispatchQueue.main)
+            environment.loader.publisher()
+                .receive(on: environment.scheduler)
                 .replaceError(with: [])
                 .eraseToEffect()
                 .flatMap { items in
@@ -81,6 +84,25 @@ struct VaultView: View {
 
 struct VaultView_Previews: PreviewProvider {
     static var previews: some View {
-        VaultView(store: Store(initialValue: .init(), reducer: vaultReducer, environment: localVaultLoader))
+        VaultView(
+            store: Store(
+                initialValue: .init(),
+                reducer: vaultReducer,
+                environment: (testlVaultLoader, .immediateOnMainQueue)
+            )
+        )
+    }
+}
+
+let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
+
+class TestVaultStore: VaultStore {
+    func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
+        completion(.success([
+            .init(name: "Facebook", password: "1234556", url: URL(string: "https://any-url.com/")!),
+            .init(name: "Twitter", password: "1234556", url: URL(string: "https://any-url.com/")!),
+            .init(name: "WhatsApp", password: "1234556", url: URL(string: "https://any-url.com/")!),
+            .init(name: "Telegram", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        ]))
     }
 }

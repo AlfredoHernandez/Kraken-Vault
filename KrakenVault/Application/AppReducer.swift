@@ -11,5 +11,5 @@ let appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
         action: \AppAction.passwordGenerated,
         environment: { ($0.copyToPasteboard, $0.generateFeedbackImpact, $0.generatePassword) }
     ),
-    pullback(vaultReducer, value: \AppState.vault, action: \AppAction.vault, environment: { $0.vaultItemsStore })
+    pullback(vaultReducer, value: \AppState.vault, action: \AppAction.vault, environment: { ($0.vaultItemsStore, $0.dispatchQueueScheduler) })
 )

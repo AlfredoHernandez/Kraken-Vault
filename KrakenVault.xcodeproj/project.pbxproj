@@ -16,6 +16,7 @@
 		3808FBF7281DFB7B00BF6A4E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3808FBF6281DFB7B00BF6A4E /* AppReducer.swift */; };
 		380A671A28381109001B8DE7 /* XCTestCase+MemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A671928381109001B8DE7 /* XCTestCase+MemoryLeaks.swift */; };
 		380A671C2838113C001B8DE7 /* VaultStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A671B2838113C001B8DE7 /* VaultStoreSpy.swift */; };
+		380A672028382D75001B8DE7 /* PowerfulCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 380A671F28382D75001B8DE7 /* PowerfulCombine */; };
 		3839D776282D8B6300074923 /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */; };
 		383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 383D1DDC282307C80066C185 /* ComposableArchitecture */; };
 		38527C9F282F31F800ACC933 /* App+UIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38527C9E282F31F800ACC933 /* App+UIActions.swift */; };
@@ -118,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				380A672028382D75001B8DE7 /* PowerfulCombine in Frameworks */,
 				3893E0F02837FE88007A80AF /* KrakenVaultCore.framework in Frameworks */,
 				383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */,
 			);
@@ -309,6 +311,7 @@
 			name = KrakenVault;
 			packageProductDependencies = (
 				383D1DDC282307C80066C185 /* ComposableArchitecture */,
+				380A671F28382D75001B8DE7 /* PowerfulCombine */,
 			);
 			productName = KrakenVault;
 			productReference = 3808FBB4281DED4700BF6A4E /* KrakenVault.app */;
@@ -408,6 +411,7 @@
 			mainGroup = 3808FBAB281DED4700BF6A4E;
 			packageReferences = (
 				383D1DDB282307C80066C185 /* XCRemoteSwiftPackageReference "composable-architecture" */,
+				380A671E28382D75001B8DE7 /* XCRemoteSwiftPackageReference "PowerfulCombine" */,
 			);
 			productRefGroup = 3808FBB5281DED4700BF6A4E /* Products */;
 			projectDirPath = "";
@@ -915,6 +919,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		380A671E28382D75001B8DE7 /* XCRemoteSwiftPackageReference "PowerfulCombine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AlfredoHernandez/PowerfulCombine.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		383D1DDB282307C80066C185 /* XCRemoteSwiftPackageReference "composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AlfredoHernandez/composable-architecture.git";
@@ -926,6 +938,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		380A671F28382D75001B8DE7 /* PowerfulCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 380A671E28382D75001B8DE7 /* XCRemoteSwiftPackageReference "PowerfulCombine" */;
+			productName = PowerfulCombine;
+		};
 		383D1DDC282307C80066C185 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 383D1DDB282307C80066C185 /* XCRemoteSwiftPackageReference "composable-architecture" */;

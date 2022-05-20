@@ -5,6 +5,7 @@
 import Combine
 import Foundation
 import KrakenVaultCore
+import PowerfulCombine
 import UIKit
 
 enum AppAction {
@@ -40,5 +41,6 @@ typealias AppEnvironment = (
     copyToPasteboard: ([String]) -> Void,
     generateFeedbackImpact: () -> Void,
     generatePassword: (_ length: Int, _ specialCharacters: Bool, _ uppercase: Bool, _ numbers: Bool) -> [String],
-    vaultItemsStore: LocalVaultLoader
+    vaultItemsStore: LocalVaultLoader,
+    dispatchQueueScheduler: AnyDispatchQueueScheduler
 )
