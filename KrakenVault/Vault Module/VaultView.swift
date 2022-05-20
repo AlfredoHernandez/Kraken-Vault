@@ -31,7 +31,12 @@ struct VaultView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear { store.send(.loadVault) }
+        .onAppear {
+            store.send(.loadVault)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                store.send(.save(VaultItem(name: "A new name", password: "anyPassword", url: URL(string: "https://any-url.com")!)))
+            }
+        }
     }
 }
 
@@ -56,14 +61,19 @@ struct VaultView_Previews: PreviewProvider {
 let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
 
 class TestVaultStore: VaultStore {
-    func insert(_: LocalVaultItem, completion _: @escaping (Result<Void, Error>) -> Void) {}
+    var items: [LocalVaultItem] = [
+        .init(name: "Facebook", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "Twitter", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "WhatsApp", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "Telegram", password: "1234556", url: URL(string: "https://any-url.com/")!),
+    ]
+
+    func insert(_ item: LocalVaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        items.append(item)
+        completion(.success(()))
+    }
 
     func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
-        completion(.success([
-            .init(name: "Facebook", password: "1234556", url: URL(string: "https://any-url.com/")!),
-            .init(name: "Twitter", password: "1234556", url: URL(string: "https://any-url.com/")!),
-            .init(name: "WhatsApp", password: "1234556", url: URL(string: "https://any-url.com/")!),
-            .init(name: "Telegram", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        ]))
+        completion(.success(items))
     }
 }

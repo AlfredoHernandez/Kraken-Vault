@@ -7,4 +7,5 @@ import KrakenVaultCore
 enum PasswordVaultAction {
     case loadVault
     case loadedVault([VaultItem])
+    case save(VaultItem)
 }

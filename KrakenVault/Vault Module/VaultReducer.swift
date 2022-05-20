@@ -9,6 +9,7 @@ import PowerfulCombine
 
 typealias VaultEnvironment = (loader: LocalVaultLoader, scheduler: AnyDispatchQueueScheduler)
 
+// TODO: Split LocalVaultLoader to load, insert, delete, etc...
 func vaultReducer(state: inout PasswordVaultState, action: PasswordVaultAction, environment: VaultEnvironment) -> [Effect<PasswordVaultAction>] {
     switch action {
     case .loadVault:
@@ -26,5 +27,12 @@ func vaultReducer(state: inout PasswordVaultState, action: PasswordVaultAction, 
     case let .loadedVault(items):
         state.vaultItems = items
         return []
+    case let .save(item):
+        return [
+            .fireAndForget {
+                environment.loader.save(item) { _ in }
+            },
+            .sync { .loadVault },
+        ]
     }
 }
