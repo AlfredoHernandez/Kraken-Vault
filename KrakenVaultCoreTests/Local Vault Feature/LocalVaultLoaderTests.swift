@@ -61,28 +61,6 @@ final class LocalVaultLoaderTests: XCTestCase {
         return (sut, store)
     }
 
-    class VaultStoreSpy: VaultStore {
-        enum Message {
-            case retrieve
-        }
-
-        var messages = [Message]()
-        var retrieveRequests = [(Result<[LocalVaultItem], Error>) -> Void]()
-
-        func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
-            messages.append(.retrieve)
-            retrieveRequests.append(completion)
-        }
-
-        func completeRetrieve(with error: Error, at index: Int = 0) {
-            retrieveRequests[index](.failure(error))
-        }
-
-        func completeRetrieve(with items: [LocalVaultItem], at index: Int = 0) {
-            retrieveRequests[index](.success(items))
-        }
-    }
-
     private func expect(
         _ sut: LocalVaultLoader,
         completesWith expectedResult: Result<[VaultItem], Error>,
@@ -108,16 +86,12 @@ final class LocalVaultLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    func makeItem(name: String = "", password: String = "", url: URL = URL(string: "https://any-url.com")!) -> (storeModel: LocalVaultItem, model: VaultItem) {
+    private func makeItem(
+        name: String = "",
+        password: String = "",
+        url: URL = URL(string: "https://any-url.com")!
+    ) -> (storeModel: LocalVaultItem, model: VaultItem) {
         return (.fixture(name: name, password: password, url: url), .fixture(name: name, password: password, url: url))
-    }
-}
-
-extension XCTestCase {
-    func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak!", file: file, line: line)
-        }
     }
 }
 
