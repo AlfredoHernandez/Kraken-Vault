@@ -15,7 +15,11 @@ struct VaultView: View {
     var body: some View {
         NavigationView {
             List(store.value.vaultItems) { item in
-                PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
+                NavigationLink {
+                    EmptyView()
+                } label: {
+                    PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
+                }
             }
             .searchable(
                 text: $query,
@@ -68,10 +72,9 @@ let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
 
 class TestVaultStore: VaultStore {
     var items: [VaultStoreItem] = [
-        .init(name: "Facebook", username: "AlfredoHdz", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        .init(name: "Twitter", username: "alfredohdzdev", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        .init(name: "WhatsApp", username: "Alfred", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        .init(name: "Telegram", username: "alfredoztux", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "Facebook", username: "user@mail.com", password: "123456", url: URL(string: "https://facebook.com/")!),
+        .init(name: "Twitter", username: "username", password: "123456", url: URL(string: "https://twitter.com/")!),
+        .init(name: "Instagram", username: "user@mail.com", password: "654321", url: URL(string: "https://instagram.com/")!),
     ]
 
     func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
