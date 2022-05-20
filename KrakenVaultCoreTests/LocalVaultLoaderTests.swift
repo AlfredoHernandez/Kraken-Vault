@@ -39,6 +39,24 @@ final class LocalVaultLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func test_load_deliversNoItemsOnEmptyVault() {
+        let (sut, store) = makeSUT()
+        let exp = expectation(description: "Wait for loading completion")
+
+        sut.load { result in
+            switch result {
+            case let .success(receivedItems):
+                XCTAssertTrue(receivedItems.isEmpty)
+            case .failure:
+                XCTFail("Expected a success, but got \(result) instead")
+            }
+            exp.fulfill()
+        }
+
+        store.completeRetrieve(with: [])
+        wait(for: [exp], timeout: 1.0)
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LocalVaultLoader, VaultStoreSpy) {
@@ -65,6 +83,10 @@ final class LocalVaultLoaderTests: XCTestCase {
 
         func completeRetrieve(with error: Error, at index: Int = 0) {
             retrieveRequests[index](.failure(error))
+        }
+
+        func completeRetrieve(with items: [LocalVaultItem], at index: Int = 0) {
+            retrieveRequests[index](.success(items))
         }
     }
 }

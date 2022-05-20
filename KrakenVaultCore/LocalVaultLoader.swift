@@ -19,7 +19,10 @@ public class LocalVaultLoader {
 
     public func load(completion: @escaping (Result<[VaultItem], Error>) -> Void) {
         store.retrieve { result in
-            if case let .failure(error) = result {
+            switch result {
+            case let .success(items):
+                completion(.success(items.map { $0.toVaultItem() }))
+            case let .failure(error):
                 completion(.failure(error))
             }
         }
@@ -32,6 +35,12 @@ public struct LocalVaultItem {
     let name: String
     let password: String
     let url: URL
+}
+
+extension LocalVaultItem {
+    func toVaultItem() -> VaultItem {
+        VaultItem(name: name, password: password, url: url)
+    }
 }
 
 public protocol VaultStore {
