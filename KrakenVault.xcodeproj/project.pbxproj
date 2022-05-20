@@ -21,6 +21,7 @@
 		380A672428382F71001B8DE7 /* VaultReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A672328382F71001B8DE7 /* VaultReducer.swift */; };
 		380A672628382FB2001B8DE7 /* PasswordVaultAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A672528382FB2001B8DE7 /* PasswordVaultAction.swift */; };
 		380A672828382FC4001B8DE7 /* PasswordVaultState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A672728382FC4001B8DE7 /* PasswordVaultState.swift */; };
+		380A672A283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A6729283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift */; };
 		3839D776282D8B6300074923 /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */; };
 		383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 383D1DDC282307C80066C185 /* ComposableArchitecture */; };
 		38527C9F282F31F800ACC933 /* App+UIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38527C9E282F31F800ACC933 /* App+UIActions.swift */; };
@@ -103,6 +104,7 @@
 		380A672328382F71001B8DE7 /* VaultReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultReducer.swift; sourceTree = "<group>"; };
 		380A672528382FB2001B8DE7 /* PasswordVaultAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultAction.swift; sourceTree = "<group>"; };
 		380A672728382FC4001B8DE7 /* PasswordVaultState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultState.swift; sourceTree = "<group>"; };
+		380A6729283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVaultItemsUseCaseTests.swift; sourceTree = "<group>"; };
 		3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		38527C9E282F31F800ACC933 /* App+UIActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+UIActions.swift"; sourceTree = "<group>"; };
 		3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KrakenVaultCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				3893E0FC28380039007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift */,
+				380A6729283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift */,
 				380A671B2838113C001B8DE7 /* VaultStoreSpy.swift */,
 			);
 			path = "Local Vault Feature";
@@ -518,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				380A672A283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift in Sources */,
 				380A671C2838113C001B8DE7 /* VaultStoreSpy.swift in Sources */,
 				380A671A28381109001B8DE7 /* XCTestCase+MemoryLeaks.swift in Sources */,
 				3893E0FE2838008E007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift in Sources */,
@@ -736,6 +740,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HS399QXLRD;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -756,6 +761,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HS399QXLRD;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
