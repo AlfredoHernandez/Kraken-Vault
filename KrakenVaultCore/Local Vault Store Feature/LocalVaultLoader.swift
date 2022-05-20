@@ -4,18 +4,6 @@
 
 import Foundation
 
-public struct VaultItem: Equatable {
-    public let name: String
-    public let password: String
-    public let url: URL
-
-    public init(name: String, password: String, url: URL) {
-        self.name = name
-        self.password = password
-        self.url = url
-    }
-}
-
 public class LocalVaultLoader {
     private let store: VaultStore
 
@@ -39,20 +27,6 @@ public class LocalVaultLoader {
     }
 }
 
-// MARK: - Persistence
-
-public struct LocalVaultItem: Equatable {
-    let name: String
-    let password: String
-    let url: URL
-
-    public init(name: String, password: String, url: URL) {
-        self.name = name
-        self.password = password
-        self.url = url
-    }
-}
-
 extension LocalVaultItem {
     func toVaultItem() -> VaultItem {
         VaultItem(name: name, password: password, url: url)
@@ -63,10 +37,4 @@ extension VaultItem {
     func toLocalItem() -> LocalVaultItem {
         LocalVaultItem(name: name, password: password, url: url)
     }
-}
-
-public protocol VaultStore {
-    func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void)
-
-    func insert(_ item: LocalVaultItem, completion: @escaping (Result<Void, Error>) -> Void)
 }
