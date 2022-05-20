@@ -5,7 +5,7 @@
 import Foundation
 
 public protocol VaultStore {
-    func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void)
+    func retrieve(completion: @escaping (Result<[VaultStoreItem], Error>) -> Void)
 
-    func insert(_ item: LocalVaultItem, completion: @escaping (Result<Void, Error>) -> Void)
+    func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void)
 }

@@ -38,7 +38,7 @@ final class LoadVaultItemsFromLocalStoreUseCaseTests: XCTestCase {
 
     func test_load_deliversVaultItemsOnNonEmptyVault() {
         let (sut, store) = makeSUT()
-        let items: [(storeModel: LocalVaultItem, model: VaultItem)] = [
+        let items: [(storeModel: VaultStoreItem, model: VaultItem)] = [
             makeItem(name: "Facebook", password: "apassword", url: URL(string: "https://facebook.com/")!),
             makeItem(name: "Twitter", password: "anothePassword", url: URL(string: "https://twitter.com/")!),
             makeItem(name: "Twitch", password: "Passw0rd4423", url: URL(string: "https://twich.com/")!),
@@ -101,9 +101,9 @@ final class LoadVaultItemsFromLocalStoreUseCaseTests: XCTestCase {
     }
 }
 
-extension LocalVaultItem {
+extension VaultStoreItem {
     static func fixture(name: String = "", password: String = "", url: URL = URL(string: "https://any-url.com")!) -> Self {
-        LocalVaultItem(name: name, password: password, url: url)
+        VaultStoreItem(name: name, password: password, url: url)
     }
 }
 

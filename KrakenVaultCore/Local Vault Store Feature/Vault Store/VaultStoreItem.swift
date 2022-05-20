@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct LocalVaultItem: Equatable {
+public struct VaultStoreItem: Equatable {
     let name: String
     let password: String
     let url: URL

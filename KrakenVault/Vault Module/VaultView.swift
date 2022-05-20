@@ -61,19 +61,19 @@ struct VaultView_Previews: PreviewProvider {
 let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
 
 class TestVaultStore: VaultStore {
-    var items: [LocalVaultItem] = [
+    var items: [VaultStoreItem] = [
         .init(name: "Facebook", password: "1234556", url: URL(string: "https://any-url.com/")!),
         .init(name: "Twitter", password: "1234556", url: URL(string: "https://any-url.com/")!),
         .init(name: "WhatsApp", password: "1234556", url: URL(string: "https://any-url.com/")!),
         .init(name: "Telegram", password: "1234556", url: URL(string: "https://any-url.com/")!),
     ]
 
-    func insert(_ item: LocalVaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
+    func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
         items.append(item)
         completion(.success(()))
     }
 
-    func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
+    func retrieve(completion: @escaping (Result<[VaultStoreItem], Error>) -> Void) {
         completion(.success(items))
     }
 }

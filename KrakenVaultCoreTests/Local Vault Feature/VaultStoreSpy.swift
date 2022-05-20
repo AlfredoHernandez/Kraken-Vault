@@ -7,16 +7,16 @@ import KrakenVaultCore
 class VaultStoreSpy: VaultStore {
     enum Message: Equatable {
         case retrieve
-        case insert(LocalVaultItem)
+        case insert(VaultStoreItem)
     }
 
     var messages = [Message]()
 
     // MARK: - Retrieval
 
-    var retrieveRequests = [(Result<[LocalVaultItem], Error>) -> Void]()
+    var retrieveRequests = [(Result<[VaultStoreItem], Error>) -> Void]()
 
-    func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
+    func retrieve(completion: @escaping (Result<[VaultStoreItem], Error>) -> Void) {
         messages.append(.retrieve)
         retrieveRequests.append(completion)
     }
@@ -25,7 +25,7 @@ class VaultStoreSpy: VaultStore {
         retrieveRequests[index](.failure(error))
     }
 
-    func completeRetrieve(with items: [LocalVaultItem], at index: Int = 0) {
+    func completeRetrieve(with items: [VaultStoreItem], at index: Int = 0) {
         retrieveRequests[index](.success(items))
     }
 
@@ -33,7 +33,7 @@ class VaultStoreSpy: VaultStore {
 
     var insertionRequests = [(Result<Void, Error>) -> Void]()
 
-    func insert(_ item: LocalVaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
+    func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
         messages.append(.insert(item))
         insertionRequests.append(completion)
     }
