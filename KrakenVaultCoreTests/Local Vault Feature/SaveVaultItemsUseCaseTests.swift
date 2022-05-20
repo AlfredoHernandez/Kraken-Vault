@@ -37,6 +37,21 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
         }
     }
 
+    func test_save_doesNotCompletesAfterSUTInstanceHasBeenDeallocated() {
+        let store = VaultStoreSpy()
+        var sut: LocalVaultLoader? = LocalVaultLoader(store: store)
+        var results = [Result<Void, Error>]()
+
+        sut?.save(.fixture(), completion: { result in
+            results.append(result)
+        })
+
+        sut = nil
+        store.completeInsertionSuccessfully()
+
+        XCTAssertTrue(results.isEmpty, "Expected no results after SUT instance has been deallocated")
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LocalVaultLoader, VaultStoreSpy) {
@@ -55,7 +70,7 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let exp = expectation(description: "Wait for loading completion")
+        let exp = expectation(description: "Wait for save completion")
 
         sut.save(.fixture(name: "any")) { receivedResult in
             switch (receivedResult, expectedResult) {

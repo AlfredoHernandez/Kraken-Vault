@@ -12,7 +12,8 @@ public class LocalVaultLoader {
     }
 
     public func load(completion: @escaping (Result<[VaultItem], Error>) -> Void) {
-        store.retrieve { result in
+        store.retrieve { [weak self] result in
+            guard self != nil else { return }
             switch result {
             case let .success(items):
                 completion(.success(items.map { $0.toVaultItem() }))
@@ -23,7 +24,10 @@ public class LocalVaultLoader {
     }
 
     public func save(_ item: VaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
-        store.insert(item.toLocalItem(), completion: completion)
+        store.insert(item.toLocalItem()) { [weak self] result in
+            guard self != nil else { return }
+            completion(result)
+        }
     }
 }
 

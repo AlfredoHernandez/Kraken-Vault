@@ -49,6 +49,21 @@ final class LoadVaultItemsFromLocalStoreUseCaseTests: XCTestCase {
         }
     }
 
+    func test_load_doesNotCompletesAfterSUTInstanceHasBeenDeallocated() {
+        let store = VaultStoreSpy()
+        var sut: LocalVaultLoader? = LocalVaultLoader(store: store)
+        var results = [Result<[VaultItem], Error>]()
+
+        sut?.load(completion: { result in
+            results.append(result)
+        })
+
+        sut = nil
+        store.completeRetrieve(with: [.fixture()])
+
+        XCTAssertTrue(results.isEmpty, "Expected no results after SUT instance has been deallocated")
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LocalVaultLoader, VaultStoreSpy) {
