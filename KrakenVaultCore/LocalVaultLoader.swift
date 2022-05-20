@@ -4,10 +4,16 @@
 
 import Foundation
 
-public struct VaultItem {
+public struct VaultItem: Equatable {
     let name: String
     let password: String
     let url: URL
+
+    public init(name: String, password: String, url: URL) {
+        self.name = name
+        self.password = password
+        self.url = url
+    }
 }
 
 public class LocalVaultLoader {
@@ -35,6 +41,12 @@ public struct LocalVaultItem {
     let name: String
     let password: String
     let url: URL
+
+    public init(name: String, password: String, url: URL) {
+        self.name = name
+        self.password = password
+        self.url = url
+    }
 }
 
 extension LocalVaultItem {
