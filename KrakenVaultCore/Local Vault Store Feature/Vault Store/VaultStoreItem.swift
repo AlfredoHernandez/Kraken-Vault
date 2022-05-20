@@ -5,7 +5,7 @@
 import Foundation
 
 public struct VaultStoreItem: Equatable {
-    let uuid: UUID
+    public let uuid: UUID
     let name: String
     let username: String
     let password: String

@@ -8,4 +8,5 @@ enum PasswordVaultAction {
     case loadVault
     case loadedVault([VaultItem])
     case save(VaultItem)
+    case delete(IndexSet)
 }

@@ -14,12 +14,15 @@ struct VaultView: View {
 
     var body: some View {
         NavigationView {
-            List(store.value.vaultItems) { item in
-                NavigationLink {
-                    EmptyView()
-                } label: {
-                    PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
+            List {
+                ForEach(store.value.vaultItems) { item in
+                    NavigationLink {
+                        EmptyView()
+                    } label: {
+                        PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
+                    }
                 }
+                .onDelete { index in store.send(.delete(index)) }
             }
             .searchable(
                 text: $query,
@@ -51,9 +54,7 @@ struct VaultView: View {
 }
 
 extension VaultItem: Identifiable {
-    public var id: String {
-        name + url.absoluteString
-    }
+    public var id: UUID { uuid }
 }
 
 struct VaultView_Previews: PreviewProvider {
@@ -86,5 +87,8 @@ class TestVaultStore: VaultStore {
         completion(.success(items))
     }
 
-    func delete(_: VaultStoreItem, completion _: @escaping (Result<Void, Error>) -> Void) {}
+    func delete(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        items.removeAll(where: { $0.uuid == item.uuid })
+        completion(.success(()))
+    }
 }

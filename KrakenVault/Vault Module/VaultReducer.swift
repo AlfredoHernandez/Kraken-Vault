@@ -34,5 +34,14 @@ func vaultReducer(state: inout PasswordVaultState, action: PasswordVaultAction, 
             },
             .sync { .loadVault },
         ]
+    case let .delete(indexSet):
+        let index = indexSet.first ?? 0
+        let itemToDelete = state.vaultItems.remove(at: index)
+        return [
+            .fireAndForget {
+                environment.loader.delete(itemToDelete) { _ in }
+            },
+            .sync { .loadVault },
+        ]
     }
 }
