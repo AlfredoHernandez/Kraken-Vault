@@ -25,7 +25,16 @@ struct VaultView: View {
             .navigationTitle(Text("Vault"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                Button(action: {}) {
+                Button(action: { store.send(
+                    .save(
+                        VaultItem(
+                            name: "A new name",
+                            username: "a new username xD",
+                            password: "anyPassword",
+                            url: URL(string: "https://any-url.com")!
+                        )
+                    )
+                ) }) {
                     Image(systemName: "plus")
                 }
             }
@@ -33,15 +42,6 @@ struct VaultView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             store.send(.loadVault)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                store
-                    .send(.save(VaultItem(
-                        name: "A new name",
-                        username: "a new username xD",
-                        password: "anyPassword",
-                        url: URL(string: "https://any-url.com")!
-                    )))
-            }
         }
     }
 }
