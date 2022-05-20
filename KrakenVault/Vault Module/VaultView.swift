@@ -56,7 +56,7 @@ struct VaultView_Previews: PreviewProvider {
 let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
 
 class TestVaultStore: VaultStore {
-    func insert(_: LocalVaultItem) {}
+    func insert(_: LocalVaultItem, completion _: @escaping (Result<Void, Error>) -> Void) {}
 
     func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
         completion(.success([

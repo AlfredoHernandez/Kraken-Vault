@@ -11,6 +11,9 @@ class VaultStoreSpy: VaultStore {
     }
 
     var messages = [Message]()
+
+    // MARK: - Retrieval
+
     var retrieveRequests = [(Result<[LocalVaultItem], Error>) -> Void]()
 
     func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
@@ -26,7 +29,16 @@ class VaultStoreSpy: VaultStore {
         retrieveRequests[index](.success(items))
     }
 
-    func insert(_ item: LocalVaultItem) {
+    // MARK: - Insertion
+
+    var insertionRequests = [(Result<Void, Error>) -> Void]()
+
+    func insert(_ item: LocalVaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
         messages.append(.insert(item))
+        insertionRequests.append(completion)
+    }
+
+    func completeInsertion(with error: Error, at index: Int = 0) {
+        insertionRequests[index](.failure(error))
     }
 }

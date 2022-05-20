@@ -22,10 +22,9 @@ final class LoadVaultItemsFromLocalStoreUseCaseTests: XCTestCase {
 
     func test_load_failsOnRetrievalError() {
         let (sut, store) = makeSUT()
-        let expectedError = NSError(domain: "io.alfredohdz.KrakenVaultCore.testing", code: 0)
 
-        expect(sut, completesWith: .failure(expectedError)) {
-            store.completeRetrieve(with: expectedError)
+        expect(sut, completesWith: .failure(anyNSError())) {
+            store.completeRetrieve(with: anyNSError())
         }
     }
 

@@ -16,9 +16,17 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         let item = makeItem(name: "any")
 
-        sut.save(item.model)
+        sut.save(item.model) { _ in }
 
         XCTAssertEqual(store.messages, [.insert(item.storeModel)])
+    }
+
+    func test_save_failsWithInsertionError() {
+        let (sut, store) = makeSUT()
+
+        expect(sut, completesWith: .failure(anyNSError())) {
+            store.completeInsertion(with: anyNSError())
+        }
     }
 
     // MARK: - Helpers
@@ -30,5 +38,29 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, store)
+    }
+
+    private func expect(
+        _ sut: LocalVaultLoader,
+        completesWith expectedResult: Result<[VaultItem], Error>,
+        when action: () -> Void,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for loading completion")
+
+        sut.save(.fixture(name: "any")) { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case (.success, .success): break
+            case let (.failure(receivedError), .failure(expectedError)):
+                XCTAssertEqual(receivedError as NSError, expectedError as NSError, file: file, line: line)
+            default:
+                XCTFail("Expected a \(expectedResult), but got \(receivedResult) instead", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+
+        action()
+        wait(for: [exp], timeout: 1.0)
     }
 }

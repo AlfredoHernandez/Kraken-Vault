@@ -34,8 +34,8 @@ public class LocalVaultLoader {
         }
     }
 
-    public func save(_ item: VaultItem) {
-        store.insert(item.toLocalItem())
+    public func save(_ item: VaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        store.insert(item.toLocalItem(), completion: completion)
     }
 }
 
@@ -68,5 +68,5 @@ extension VaultItem {
 public protocol VaultStore {
     func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void)
 
-    func insert(_ item: LocalVaultItem)
+    func insert(_ item: LocalVaultItem, completion: @escaping (Result<Void, Error>) -> Void)
 }

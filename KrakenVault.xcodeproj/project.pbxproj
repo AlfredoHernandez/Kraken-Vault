@@ -35,6 +35,7 @@
 		389E54FF282090F500F52D68 /* PasswordVaultItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */; };
 		389E5501282091BB00F52D68 /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E5500282091BB00F52D68 /* VaultView.swift */; };
 		38E11B8C2838337300D9B6A0 /* LocalVaultHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E11B8B2838337300D9B6A0 /* LocalVaultHelpers.swift */; };
+		38E11B8E2838374B00D9B6A0 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E11B8D2838374B00D9B6A0 /* Shared.swift */; };
 		C95A81A8F6712A1CAD903EEC /* GeneratePasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A89428ABDC35B417BF268 /* GeneratePasswordUseCase.swift */; };
 		C95A83D853DED757993F98ED /* PasswordGeneratorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A8B7589D1F892F6B7C957 /* PasswordGeneratorState.swift */; };
 		C95A87CA5EDC6D3B51386DA7 /* PasswordComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A8BD2859756CA7D898AB2 /* PasswordComponents.swift */; };
@@ -117,6 +118,7 @@
 		389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultItemView.swift; sourceTree = "<group>"; };
 		389E5500282091BB00F52D68 /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
 		38E11B8B2838337300D9B6A0 /* LocalVaultHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVaultHelpers.swift; sourceTree = "<group>"; };
+		38E11B8D2838374B00D9B6A0 /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		C95A8037182EF2D465BD5C59 /* PasswordGeneratorAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorAction.swift; sourceTree = "<group>"; };
 		C95A82384F587A66BBCAA5E2 /* PasswordGeneratorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorView.swift; sourceTree = "<group>"; };
 		C95A89428ABDC35B417BF268 /* GeneratePasswordUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratePasswordUseCase.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				380A671928381109001B8DE7 /* XCTestCase+MemoryLeaks.swift */,
+				38E11B8D2838374B00D9B6A0 /* Shared.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38E11B8E2838374B00D9B6A0 /* Shared.swift in Sources */,
 				380A672A283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift in Sources */,
 				380A671C2838113C001B8DE7 /* VaultStoreSpy.swift in Sources */,
 				380A671A28381109001B8DE7 /* XCTestCase+MemoryLeaks.swift in Sources */,
