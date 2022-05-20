@@ -4,6 +4,11 @@
 
 import Foundation
 
+public protocol VaultDeleter {
+    typealias Result = Swift.Result<Void, Error>
+    func delete(_ item: VaultItem, completion: @escaping (VaultDeleter.Result) -> Void)
+}
+
 public class LocalVaultLoader: VaultLoader {
     private let store: VaultStore
 
@@ -27,6 +32,15 @@ public class LocalVaultLoader: VaultLoader {
 extension LocalVaultLoader: VaultSaver {
     public func save(_ item: VaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
         store.insert(item.toLocalItem()) { [weak self] result in
+            guard self != nil else { return }
+            completion(result)
+        }
+    }
+}
+
+extension LocalVaultLoader: VaultDeleter {
+    public func delete(_ item: VaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        store.delete(item.toLocalItem()) { [weak self] result in
             guard self != nil else { return }
             completion(result)
         }

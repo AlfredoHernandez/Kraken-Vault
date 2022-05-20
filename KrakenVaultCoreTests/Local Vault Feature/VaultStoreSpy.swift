@@ -8,6 +8,7 @@ class VaultStoreSpy: VaultStore {
     enum Message: Equatable {
         case retrieve
         case insert(VaultStoreItem)
+        case delete(VaultStoreItem)
     }
 
     var messages = [Message]()
@@ -44,5 +45,22 @@ class VaultStoreSpy: VaultStore {
 
     func completeInsertionSuccessfully(at index: Int = 0) {
         insertionRequests[index](.success(()))
+    }
+
+    // MARK: - Deletion
+
+    var deletionRequests = [(Result<Void, Error>) -> Void]()
+
+    func delete(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        messages.append(.delete(item))
+        deletionRequests.append(completion)
+    }
+
+    func completeDeletion(with error: Error, at index: Int = 0) {
+        deletionRequests[index](.failure(error))
+    }
+
+    func completeDeletionSuccessfully(at index: Int = 0) {
+        deletionRequests[index](.success(()))
     }
 }

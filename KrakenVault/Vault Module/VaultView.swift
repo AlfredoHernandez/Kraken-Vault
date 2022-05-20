@@ -85,4 +85,6 @@ class TestVaultStore: VaultStore {
     func retrieve(completion: @escaping (Result<[VaultStoreItem], Error>) -> Void) {
         completion(.success(items))
     }
+
+    func delete(_: VaultStoreItem, completion _: @escaping (Result<Void, Error>) -> Void) {}
 }
