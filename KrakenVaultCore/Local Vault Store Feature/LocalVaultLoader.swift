@@ -35,12 +35,12 @@ extension LocalVaultLoader: VaultSaver {
 
 extension VaultStoreItem {
     func toVaultItem() -> VaultItem {
-        VaultItem(name: name, password: password, url: url)
+        VaultItem(name: name, username: username, password: password, url: url)
     }
 }
 
 extension VaultItem {
     func toLocalItem() -> VaultStoreItem {
-        VaultStoreItem(name: name, password: password, url: url)
+        VaultStoreItem(name: name, username: username, password: password, url: url)
     }
 }

@@ -15,7 +15,7 @@ struct VaultView: View {
     var body: some View {
         NavigationView {
             List(store.value.vaultItems) { item in
-                PasswordVaultItemView(siteName: item.name, loginIdentifier: "AlfredoHernandezAlarcon")
+                PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
             }
             .searchable(
                 text: $query,
@@ -34,7 +34,13 @@ struct VaultView: View {
         .onAppear {
             store.send(.loadVault)
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                store.send(.save(VaultItem(name: "A new name", password: "anyPassword", url: URL(string: "https://any-url.com")!)))
+                store
+                    .send(.save(VaultItem(
+                        name: "A new name",
+                        username: "a new username xD",
+                        password: "anyPassword",
+                        url: URL(string: "https://any-url.com")!
+                    )))
             }
         }
     }
@@ -62,10 +68,10 @@ let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
 
 class TestVaultStore: VaultStore {
     var items: [VaultStoreItem] = [
-        .init(name: "Facebook", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        .init(name: "Twitter", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        .init(name: "WhatsApp", password: "1234556", url: URL(string: "https://any-url.com/")!),
-        .init(name: "Telegram", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "Facebook", username: "AlfredoHdz", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "Twitter", username: "alfredohdzdev", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "WhatsApp", username: "Alfred", password: "1234556", url: URL(string: "https://any-url.com/")!),
+        .init(name: "Telegram", username: "alfredoztux", password: "1234556", url: URL(string: "https://any-url.com/")!),
     ]
 
     func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {

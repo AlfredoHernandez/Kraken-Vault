@@ -102,13 +102,13 @@ final class LoadVaultItemsFromLocalStoreUseCaseTests: XCTestCase {
 }
 
 extension VaultStoreItem {
-    static func fixture(name: String = "", password: String = "", url: URL = URL(string: "https://any-url.com")!) -> Self {
-        VaultStoreItem(name: name, password: password, url: url)
+    static func fixture(name: String = "", username: String = "", password: String = "", url: URL = URL(string: "https://any-url.com")!) -> Self {
+        VaultStoreItem(name: name, username: username, password: password, url: url)
     }
 }
 
 extension VaultItem {
-    static func fixture(name: String = "", password: String = "", url: URL = URL(string: "https://any-url.com")!) -> Self {
-        VaultItem(name: name, password: password, url: url)
+    static func fixture(name: String = "", username: String = "", password: String = "", url: URL = URL(string: "https://any-url.com")!) -> Self {
+        VaultItem(name: name, username: username, password: password, url: url)
     }
 }
