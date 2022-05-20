@@ -44,6 +44,15 @@ final class LocalVaultLoaderTests: XCTestCase {
 
     // MARK: - Helpers
 
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LocalVaultLoader, VaultStoreSpy) {
+        let store = VaultStoreSpy()
+        let sut = LocalVaultLoader(store: store)
+
+        trackForMemoryLeaks(store, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return (sut, store)
+    }
+
     class VaultStoreSpy: VaultStore {
         enum Message {
             case retrieve
@@ -59,6 +68,14 @@ final class LocalVaultLoaderTests: XCTestCase {
 
         func completeRetrieve(with error: Error, at index: Int = 0) {
             retrieveRequests[index](.failure(error))
+        }
+    }
+}
+
+extension XCTestCase {
+    func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak!", file: file, line: line)
         }
     }
 }
