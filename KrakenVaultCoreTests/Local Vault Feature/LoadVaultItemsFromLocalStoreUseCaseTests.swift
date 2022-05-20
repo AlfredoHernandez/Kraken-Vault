@@ -76,8 +76,8 @@ final class LoadVaultItemsFromLocalStoreUseCaseTests: XCTestCase {
     }
 
     private func expect(
-        _ sut: LocalVaultLoader,
-        completesWith expectedResult: Result<[VaultItem], Error>,
+        _ sut: VaultLoader,
+        completesWith expectedResult: VaultLoader.Result,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line

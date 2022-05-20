@@ -64,8 +64,8 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
     }
 
     private func expect(
-        _ sut: LocalVaultLoader,
-        completesWith expectedResult: Result<Void, Error>,
+        _ sut: VaultSaver,
+        completesWith expectedResult: VaultSaver.Result,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line

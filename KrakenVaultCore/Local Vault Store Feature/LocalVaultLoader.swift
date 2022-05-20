@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class LocalVaultLoader {
+public class LocalVaultLoader: VaultLoader {
     private let store: VaultStore
 
     public init(store: VaultStore) {
@@ -22,7 +22,9 @@ public class LocalVaultLoader {
             }
         }
     }
+}
 
+extension LocalVaultLoader: VaultSaver {
     public func save(_ item: VaultItem, completion: @escaping (Result<Void, Error>) -> Void) {
         store.insert(item.toLocalItem()) { [weak self] result in
             guard self != nil else { return }
