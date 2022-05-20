@@ -5,7 +5,7 @@
 import KrakenVaultCore
 import XCTest
 
-final class LocalVaultLoaderTests: XCTestCase {
+final class LoadVaultItemsFromLocalStoreUseCaseTests: XCTestCase {
     func test_init_doesNotMessageLocalStoreUponCreation() {
         let (_, store) = makeSUT()
 

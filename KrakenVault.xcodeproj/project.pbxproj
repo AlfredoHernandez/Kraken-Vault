@@ -24,7 +24,7 @@
 		3893E0F02837FE88007A80AF /* KrakenVaultCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */; };
 		3893E0F12837FE88007A80AF /* KrakenVaultCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3893E0FA2837FEAE007A80AF /* LocalVaultLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3893E0F92837FEAE007A80AF /* LocalVaultLoader.swift */; };
-		3893E0FE2838008E007A80AF /* LocalVaultLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3893E0FC28380039007A80AF /* LocalVaultLoaderTests.swift */; };
+		3893E0FE2838008E007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3893E0FC28380039007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift */; };
 		389E54FC2820699500F52D68 /* KrakenVaultMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */; };
 		389E54FF282090F500F52D68 /* PasswordVaultItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */; };
 		389E5501282091BB00F52D68 /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E5500282091BB00F52D68 /* VaultView.swift */; };
@@ -100,7 +100,7 @@
 		3893E0DF2837FE87007A80AF /* KrakenVaultCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KrakenVaultCore.h; sourceTree = "<group>"; };
 		3893E0E42837FE88007A80AF /* KrakenVaultCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KrakenVaultCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3893E0F92837FEAE007A80AF /* LocalVaultLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVaultLoader.swift; sourceTree = "<group>"; };
-		3893E0FC28380039007A80AF /* LocalVaultLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVaultLoaderTests.swift; sourceTree = "<group>"; };
+		3893E0FC28380039007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadVaultItemsFromLocalStoreUseCaseTests.swift; sourceTree = "<group>"; };
 		389E54FB2820699500F52D68 /* KrakenVaultMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakenVaultMainView.swift; sourceTree = "<group>"; };
 		389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultItemView.swift; sourceTree = "<group>"; };
 		389E5500282091BB00F52D68 /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		380A671D2838115C001B8DE7 /* Local Vault Feature */ = {
 			isa = PBXGroup;
 			children = (
-				3893E0FC28380039007A80AF /* LocalVaultLoaderTests.swift */,
+				3893E0FC28380039007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift */,
 				380A671B2838113C001B8DE7 /* VaultStoreSpy.swift */,
 			);
 			path = "Local Vault Feature";
@@ -500,7 +500,7 @@
 			files = (
 				380A671C2838113C001B8DE7 /* VaultStoreSpy.swift in Sources */,
 				380A671A28381109001B8DE7 /* XCTestCase+MemoryLeaks.swift in Sources */,
-				3893E0FE2838008E007A80AF /* LocalVaultLoaderTests.swift in Sources */,
+				3893E0FE2838008E007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
