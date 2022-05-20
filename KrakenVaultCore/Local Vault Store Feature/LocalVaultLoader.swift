@@ -49,12 +49,12 @@ extension LocalVaultLoader: VaultDeleter {
 
 extension VaultStoreItem {
     func toVaultItem() -> VaultItem {
-        VaultItem(name: name, username: username, password: password, url: url)
+        VaultItem(uuid: uuid, name: name, username: username, password: password, url: url)
     }
 }
 
 extension VaultItem {
     func toLocalItem() -> VaultStoreItem {
-        VaultStoreItem(name: name, username: username, password: password, url: url)
+        VaultStoreItem(uuid: uuid, name: name, username: username, password: password, url: url)
     }
 }

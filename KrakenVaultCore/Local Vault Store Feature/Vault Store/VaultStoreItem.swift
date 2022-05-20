@@ -5,12 +5,14 @@
 import Foundation
 
 public struct VaultStoreItem: Equatable {
+    let uuid: UUID
     let name: String
     let username: String
     let password: String
     let url: URL
 
-    public init(name: String, username: String, password: String, url: URL) {
+    public init(uuid: UUID = UUID(), name: String, username: String, password: String, url: URL) {
+        self.uuid = uuid
         self.name = name
         self.username = username
         self.password = password
