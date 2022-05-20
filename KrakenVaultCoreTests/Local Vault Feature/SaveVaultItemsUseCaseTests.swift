@@ -29,6 +29,14 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
         }
     }
 
+    func test_save_succeedsOnSuccessfullStoreItemInsertion() {
+        let (sut, store) = makeSUT()
+
+        expect(sut, completesWith: .success(())) {
+            store.completeInsertionSuccessfully()
+        }
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LocalVaultLoader, VaultStoreSpy) {
@@ -42,7 +50,7 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
 
     private func expect(
         _ sut: LocalVaultLoader,
-        completesWith expectedResult: Result<[VaultItem], Error>,
+        completesWith expectedResult: Result<Void, Error>,
         when action: () -> Void,
         file: StaticString = #filePath,
         line: UInt = #line
