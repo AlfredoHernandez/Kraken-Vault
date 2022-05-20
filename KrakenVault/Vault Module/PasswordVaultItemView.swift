@@ -19,6 +19,12 @@ struct PasswordVaultItemView: View {
                     .font(.body)
                     .foregroundColor(.secondary)
             }
+            Spacer()
+            Button(action: {}) {
+                Image(systemName: "doc.on.doc")
+            }
+            .buttonStyle(PlainButtonStyle())
+            .foregroundColor(.accentColor)
         }
     }
 }

@@ -3,6 +3,7 @@
 //
 
 import ComposableArchitecture
+import KrakenVaultCore
 import SwiftUI
 
 @main
@@ -20,6 +21,10 @@ let store = Store(
     environment: AppEnvironment(
         copyToPasteboard: copyToPasteboard,
         generateFeedbackImpact: generateFeedbackImpact,
-        generatePassword: generatePassword
+        generatePassword: generatePassword,
+        vaultItemsStore: localVaultLoader,
+        dispatchQueueScheduler: DispatchQueue.main.eraseToAnyScheduler()
     )
 )
+
+let localVaultLoader = LocalVaultLoader(store: TestVaultStore())
