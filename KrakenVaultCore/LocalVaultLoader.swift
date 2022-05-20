@@ -5,9 +5,9 @@
 import Foundation
 
 public struct VaultItem: Equatable {
-    let name: String
-    let password: String
-    let url: URL
+    public let name: String
+    public let password: String
+    public let url: URL
 
     public init(name: String, password: String, url: URL) {
         self.name = name

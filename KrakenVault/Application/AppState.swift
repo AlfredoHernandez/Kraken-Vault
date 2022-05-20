@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import KrakenVaultCore
 
 struct AppState {
     var characters = [String]()
@@ -10,6 +11,7 @@ struct AppState {
     var includeSpecialChars = true
     var includeUppercased = true
     var includeNumbers = true
+    var vaultItems: [VaultItem] = []
 }
 
 extension AppState {
@@ -29,6 +31,15 @@ extension AppState {
             includeSpecialChars = newValue.includeSpecialChars
             includeUppercased = newValue.includeUppercased
             includeNumbers = newValue.includeNumbers
+        }
+    }
+
+    var vault: PasswordVaultState {
+        get {
+            PasswordVaultState(vaultItems: vaultItems)
+        }
+        set {
+            vaultItems = newValue.vaultItems
         }
     }
 }
