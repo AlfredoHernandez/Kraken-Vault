@@ -10,10 +10,6 @@ public struct VaultItem {
     let url: URL
 }
 
-public protocol VaultStore {
-    func retrieve()
-}
-
 public class LocalVaultLoader {
     private let store: VaultStore
 
@@ -21,7 +17,23 @@ public class LocalVaultLoader {
         self.store = store
     }
 
-    public func load() {
-        store.retrieve()
+    public func load(completion: @escaping (Result<[VaultItem], Error>) -> Void) {
+        store.retrieve { result in
+            if case let .failure(error) = result {
+                completion(.failure(error))
+            }
+        }
     }
+}
+
+// MARK: - Persistence
+
+public struct LocalVaultItem {
+    let name: String
+    let password: String
+    let url: URL
+}
+
+public protocol VaultStore {
+    func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void)
 }
