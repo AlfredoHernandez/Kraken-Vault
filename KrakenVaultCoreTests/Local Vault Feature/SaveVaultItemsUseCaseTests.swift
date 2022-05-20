@@ -12,6 +12,15 @@ final class SaveVaultItemsUseCaseTests: XCTestCase {
         XCTAssertEqual(store.messages, [])
     }
 
+    func test_save_requestsInsertionItems() {
+        let (sut, store) = makeSUT()
+        let item = makeItem(name: "any")
+
+        sut.save(item.model)
+
+        XCTAssertEqual(store.messages, [.insert(item.storeModel)])
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (LocalVaultLoader, VaultStoreSpy) {

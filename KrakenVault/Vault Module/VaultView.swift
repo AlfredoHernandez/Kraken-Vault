@@ -56,6 +56,8 @@ struct VaultView_Previews: PreviewProvider {
 let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
 
 class TestVaultStore: VaultStore {
+    func insert(_: LocalVaultItem) {}
+
     func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void) {
         completion(.success([
             .init(name: "Facebook", password: "1234556", url: URL(string: "https://any-url.com/")!),

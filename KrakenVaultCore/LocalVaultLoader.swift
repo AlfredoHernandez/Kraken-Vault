@@ -33,11 +33,15 @@ public class LocalVaultLoader {
             }
         }
     }
+
+    public func save(_ item: VaultItem) {
+        store.insert(item.toLocalItem())
+    }
 }
 
 // MARK: - Persistence
 
-public struct LocalVaultItem {
+public struct LocalVaultItem: Equatable {
     let name: String
     let password: String
     let url: URL
@@ -55,6 +59,14 @@ extension LocalVaultItem {
     }
 }
 
+extension VaultItem {
+    func toLocalItem() -> LocalVaultItem {
+        LocalVaultItem(name: name, password: password, url: url)
+    }
+}
+
 public protocol VaultStore {
     func retrieve(completion: @escaping (Result<[LocalVaultItem], Error>) -> Void)
+
+    func insert(_ item: LocalVaultItem)
 }

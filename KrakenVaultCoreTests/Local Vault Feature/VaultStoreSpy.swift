@@ -5,8 +5,9 @@
 import KrakenVaultCore
 
 class VaultStoreSpy: VaultStore {
-    enum Message {
+    enum Message: Equatable {
         case retrieve
+        case insert(LocalVaultItem)
     }
 
     var messages = [Message]()
@@ -23,5 +24,9 @@ class VaultStoreSpy: VaultStore {
 
     func completeRetrieve(with items: [LocalVaultItem], at index: Int = 0) {
         retrieveRequests[index](.success(items))
+    }
+
+    func insert(_ item: LocalVaultItem) {
+        messages.append(.insert(item))
     }
 }
