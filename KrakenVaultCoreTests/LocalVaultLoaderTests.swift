@@ -7,15 +7,13 @@ import XCTest
 
 final class LocalVaultLoaderTests: XCTestCase {
     func test_init_doesNotMessageLocalStoreUponCreation() {
-        let store = VaultStoreSpy()
-        _ = LocalVaultLoader(store: store)
+        let (_, store) = makeSUT()
 
         XCTAssertEqual(store.messages, [])
     }
 
     func test_load_requestsRetrieveItems() {
-        let store = VaultStoreSpy()
-        let sut = LocalVaultLoader(store: store)
+        let (sut, store) = makeSUT()
 
         sut.load { _ in }
 
@@ -23,8 +21,7 @@ final class LocalVaultLoaderTests: XCTestCase {
     }
 
     func test_load_failsOnRetrievalError() {
-        let store = VaultStoreSpy()
-        let sut = LocalVaultLoader(store: store)
+        let (sut, store) = makeSUT()
         let expectedError = NSError(domain: "io.alfredohdz.KrakenVaultCore.testing", code: 0)
         let exp = expectation(description: "Wait for loading completion")
 
