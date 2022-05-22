@@ -13,7 +13,7 @@ final class CoreDataVaultStoreTests: XCTestCase {
         expect(sut, toRetrieve: .success([]))
     }
 
-    func test_retrieve_deliversNoErrorOnNonEmptyStore() throws {
+    func test_retrieve_deliversFoundValuesOnNonEmptyStore() throws {
         let storeURL = URL(fileURLWithPath: "/dev/null")
         let sut = try CoreDataVaultStore(storeURL: storeURL)
         let item = makeItem()
