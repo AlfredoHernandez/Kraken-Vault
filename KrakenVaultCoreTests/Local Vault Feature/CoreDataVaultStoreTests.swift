@@ -26,23 +26,9 @@ final class CoreDataVaultStoreTests: XCTestCase {
     func test_insert_deliversNoErrorOnEmptyStore() throws {
         let storeURL = URL(fileURLWithPath: "/dev/null")
         let sut = try CoreDataVaultStore(storeURL: storeURL)
-        let exp = expectation(description: "Wait for store insertion")
+        let insertionError = insert(.fixture(), to: sut)
 
-        sut.insert(.fixture(uuid: .fake, name: "Any", password: "any-password", url: URL(string: "https://any-url.com")!)) { result in
-            switch result {
-            case .success:
-                break
-            case let .failure(error):
-                XCTFail("Expected no error on empty store, got \(error)")
-            }
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 1.0)
-
-        expect(sut, toRetrieve: .success([
-            .fixture(uuid: .fake, name: "Any", password: "any-password", url: URL(string: "https://any-url.com")!),
-        ]))
+        XCTAssertNil(insertionError, "Expected to insert item successfully")
     }
 
     // MARK: - Helpers
