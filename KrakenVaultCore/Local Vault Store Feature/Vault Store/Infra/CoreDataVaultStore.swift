@@ -51,7 +51,7 @@ extension CoreDataVaultStore: VaultStore {
         }
     }
 
-    public func delete(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func delete(_ item: VaultStoreItem, completion: @escaping (DeletionResult) -> Void) {
         perform { context in
             let request = ManagedVaultItem.fetchRequest()
             request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedVaultItem.uuid), item.uuid])
@@ -70,7 +70,7 @@ extension CoreDataVaultStore: VaultStore {
         }
     }
 
-    public func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func insert(_ item: VaultStoreItem, completion: @escaping (InsertionResult) -> Void) {
         perform { context in
             completion(Result { try ManagedVaultItem.create(from: item, in: context) })
         }
