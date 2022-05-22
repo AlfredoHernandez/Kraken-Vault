@@ -22,6 +22,10 @@
 		380A672628382FB2001B8DE7 /* PasswordVaultAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A672528382FB2001B8DE7 /* PasswordVaultAction.swift */; };
 		380A672828382FC4001B8DE7 /* PasswordVaultState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A672728382FC4001B8DE7 /* PasswordVaultState.swift */; };
 		380A672A283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A6729283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift */; };
+		38150656283ABF4300F655E2 /* CoreDataVaultStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38150655283ABF4300F655E2 /* CoreDataVaultStoreTests.swift */; };
+		38150659283AC0B900F655E2 /* CoreDataVaultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38150658283AC0B900F655E2 /* CoreDataVaultStore.swift */; };
+		3815065C283AC53F00F655E2 /* KrakenVaultStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3815065A283AC53F00F655E2 /* KrakenVaultStore.xcdatamodeld */; };
+		3815065E283AC73F00F655E2 /* ManagedVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815065D283AC73F00F655E2 /* ManagedVaultItem.swift */; };
 		3839D776282D8B6300074923 /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */; };
 		383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 383D1DDC282307C80066C185 /* ComposableArchitecture */; };
 		38527C9F282F31F800ACC933 /* App+UIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38527C9E282F31F800ACC933 /* App+UIActions.swift */; };
@@ -113,6 +117,10 @@
 		380A672528382FB2001B8DE7 /* PasswordVaultAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultAction.swift; sourceTree = "<group>"; };
 		380A672728382FC4001B8DE7 /* PasswordVaultState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVaultState.swift; sourceTree = "<group>"; };
 		380A6729283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVaultItemsUseCaseTests.swift; sourceTree = "<group>"; };
+		38150655283ABF4300F655E2 /* CoreDataVaultStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataVaultStoreTests.swift; sourceTree = "<group>"; };
+		38150658283AC0B900F655E2 /* CoreDataVaultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataVaultStore.swift; sourceTree = "<group>"; };
+		3815065B283AC53F00F655E2 /* KrakenVaultStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KrakenVaultStore.xcdatamodel; sourceTree = "<group>"; };
+		3815065D283AC73F00F655E2 /* ManagedVaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedVaultItem.swift; sourceTree = "<group>"; };
 		3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		38527C9E282F31F800ACC933 /* App+UIActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+UIActions.swift"; sourceTree = "<group>"; };
 		3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KrakenVaultCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,12 +274,23 @@
 			isa = PBXGroup;
 			children = (
 				38E11B8A2838336200D9B6A0 /* Helpers */,
+				38150655283ABF4300F655E2 /* CoreDataVaultStoreTests.swift */,
 				38E11B9B2838462800D9B6A0 /* DeleteVaultItemsFromLocalStoreUseCaseTests.swift */,
 				3893E0FC28380039007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift */,
 				380A6729283830E1001B8DE7 /* SaveVaultItemsUseCaseTests.swift */,
 				380A671B2838113C001B8DE7 /* VaultStoreSpy.swift */,
 			);
 			path = "Local Vault Feature";
+			sourceTree = "<group>";
+		};
+		38150657283AC0AA00F655E2 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				38150658283AC0B900F655E2 /* CoreDataVaultStore.swift */,
+				3815065A283AC53F00F655E2 /* KrakenVaultStore.xcdatamodeld */,
+				3815065D283AC73F00F655E2 /* ManagedVaultItem.swift */,
+			);
+			path = Infra;
 			sourceTree = "<group>";
 		};
 		3893E0DE2837FE87007A80AF /* KrakenVaultCore */ = {
@@ -316,6 +335,7 @@
 		38E11B9128383B3700D9B6A0 /* Vault Store */ = {
 			isa = PBXGroup;
 			children = (
+				38150657283AC0AA00F655E2 /* Infra */,
 				38E11B9228383B4100D9B6A0 /* VaultStoreItem.swift */,
 				38E11B9428383B5400D9B6A0 /* VaultStore.swift */,
 			);
@@ -563,10 +583,13 @@
 			files = (
 				38E11B9528383B5400D9B6A0 /* VaultStore.swift in Sources */,
 				3893E0FA2837FEAE007A80AF /* LocalVaultLoader.swift in Sources */,
+				3815065C283AC53F00F655E2 /* KrakenVaultStore.xcdatamodeld in Sources */,
 				38E11B9828383F2400D9B6A0 /* VaultLoader.swift in Sources */,
 				38E11B9028383B2500D9B6A0 /* VaultItem.swift in Sources */,
+				38150659283AC0B900F655E2 /* CoreDataVaultStore.swift in Sources */,
 				38E11B9A28383F3300D9B6A0 /* VaultSaver.swift in Sources */,
 				38E11B9328383B4100D9B6A0 /* VaultStoreItem.swift in Sources */,
+				3815065E283AC73F00F655E2 /* ManagedVaultItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +604,7 @@
 				38E11B9C2838462800D9B6A0 /* DeleteVaultItemsFromLocalStoreUseCaseTests.swift in Sources */,
 				3893E0FE2838008E007A80AF /* LoadVaultItemsFromLocalStoreUseCaseTests.swift in Sources */,
 				38E11B8C2838337300D9B6A0 /* LocalVaultHelpers.swift in Sources */,
+				38150656283ABF4300F655E2 /* CoreDataVaultStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,6 +1051,19 @@
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		3815065A283AC53F00F655E2 /* KrakenVaultStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3815065B283AC53F00F655E2 /* KrakenVaultStore.xcdatamodel */,
+			);
+			currentVersion = 3815065B283AC53F00F655E2 /* KrakenVaultStore.xcdatamodel */;
+			path = KrakenVaultStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3808FBAC281DED4700BF6A4E /* Project object */;
 }
