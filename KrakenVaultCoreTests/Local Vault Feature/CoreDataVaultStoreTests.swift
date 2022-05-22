@@ -38,38 +38,18 @@ final class CoreDataVaultStoreTests: XCTestCase {
 
     func test_delete_deliversErrorOnEmptyStore() throws {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for delete operation")
 
-        sut.delete(makeItem(uuid: .fake).storeModel) { result in
-            switch result {
-            case .success:
-                XCTFail("Expected an error, got \(result)")
-            case let .failure(receivedError):
-                XCTAssertEqual(receivedError as! CoreDataVaultStore.KrakenVaultError, CoreDataVaultStore.KrakenVaultError.itemNotFound(UUID.fake.uuidString))
-            }
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 1.0)
+        let receivedError = delete(makeItem(uuid: .fake).storeModel, to: sut)
+        XCTAssertEqual(receivedError as! CoreDataVaultStore.KrakenVaultError, CoreDataVaultStore.KrakenVaultError.itemNotFound(UUID.fake.uuidString))
     }
 
     func test_delete_deliversNoErrorOnNonEmptyStore() throws {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for delete operation")
         let item = makeItem(uuid: .fake).storeModel
         insert(item, to: sut)
 
-        sut.delete(item) { result in
-            switch result {
-            case .success:
-                break
-            case let .failure(receivedError):
-                XCTFail("Expected no errors, got \(result) with error \(receivedError)")
-            }
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 1.0)
+        let receivedError = delete(item, to: sut)
+        XCTAssertNil(receivedError, "Expected to delete item successfully")
     }
 
     // MARK: - Helpers
@@ -102,6 +82,24 @@ final class CoreDataVaultStoreTests: XCTestCase {
         }
 
         wait(for: [exp], timeout: 1.0)
+    }
+
+    @discardableResult
+    func delete(_ item: VaultStoreItem, to sut: VaultStore) -> Error? {
+        let exp = expectation(description: "Wait for store deletion")
+        var receivedError: Error?
+
+        sut.delete(item) { result in
+            switch result {
+            case .success: break
+            case let .failure(error):
+                receivedError = error
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+        return receivedError
     }
 
     @discardableResult
