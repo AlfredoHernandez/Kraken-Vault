@@ -47,5 +47,21 @@ public final class CoreDataVaultStore: VaultStore {
 
     public func delete(_: VaultStoreItem, completion _: @escaping (Result<Void, Error>) -> Void) {}
 
-    public func insert(_: VaultStoreItem, completion _: @escaping (Result<Void, Error>) -> Void) {}
+    public func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            try context.performAndWait {
+                let managedItem = ManagedVaultItem(context: context)
+                managedItem.uuid = item.uuid
+                managedItem.name = item.name
+                managedItem.username = item.username
+                managedItem.password = item.password
+                managedItem.url = item.url
+
+                try context.save()
+                completion(.success(()))
+            }
+        } catch {
+            completion(.failure(error))
+        }
+    }
 }

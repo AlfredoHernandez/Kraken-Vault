@@ -13,6 +13,28 @@ final class CoreDataVaultStoreTests: XCTestCase {
         expect(sut, toRetrieve: .success([]))
     }
 
+    func test_insert_deliversNoErrorOnEmptyStore() throws {
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let exp = expectation(description: "Wait for store insertion")
+
+        sut.insert(.fixture(uuid: .fake, name: "Any", password: "any-password", url: URL(string: "https://any-url.com")!)) { result in
+            switch result {
+            case .success:
+                break
+            case let .failure(error):
+                XCTFail("Expected no error on empty store, got \(error)")
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+
+        expect(sut, toRetrieve: .success([
+            .fixture(uuid: .fake, name: "Any", password: "any-password", url: URL(string: "https://any-url.com")!),
+        ]))
+    }
+
     // MARK: - Helpers
 
     func expect(
@@ -21,7 +43,7 @@ final class CoreDataVaultStoreTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let exp = expectation(description: "Wait for cache retrieval")
+        let exp = expectation(description: "Wait for store retrieval")
 
         sut.retrieve { retrievedResult in
             switch (expectedResult, retrievedResult) {
