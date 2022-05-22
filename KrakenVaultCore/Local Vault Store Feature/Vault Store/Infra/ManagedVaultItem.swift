@@ -18,4 +18,14 @@ extension ManagedVaultItem {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedVaultItem")
         return try context.fetch(fetchRequest) as! [ManagedVaultItem]
     }
+
+    static func create(from item: VaultStoreItem, in context: NSManagedObjectContext) throws {
+        let managedItem = ManagedVaultItem(context: context)
+        managedItem.uuid = item.uuid
+        managedItem.name = item.name
+        managedItem.username = item.username
+        managedItem.password = item.password
+        managedItem.url = item.url
+        try context.save()
+    }
 }
