@@ -12,3 +12,10 @@ class ManagedVaultItem: NSManagedObject {
     @NSManaged var password: String
     @NSManaged var url: URL
 }
+
+extension ManagedVaultItem {
+    static func all(in context: NSManagedObjectContext) throws -> [ManagedVaultItem] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedVaultItem")
+        return try context.fetch(fetchRequest) as! [ManagedVaultItem]
+    }
+}

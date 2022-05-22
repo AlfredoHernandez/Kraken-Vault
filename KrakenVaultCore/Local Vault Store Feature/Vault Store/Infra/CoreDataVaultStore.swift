@@ -32,17 +32,13 @@ public final class CoreDataVaultStore: VaultStore {
 
     public func retrieve(completion: @escaping (RetrievalResult) -> Void) {
         do {
-            try context.performAndWait { [weak self] in
-                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedVaultItem")
-                let vaultItems = try self?.context.fetch(fetchRequest) as? [ManagedVaultItem]
-
-                let localVaultItems = vaultItems.map { items in
-                    items.map {
+            try context.performAndWait {
+                let vaultItems = try ManagedVaultItem.all(in: context)
+                completion(
+                    .success(vaultItems.map {
                         VaultStoreItem(uuid: $0.uuid, name: $0.name, username: $0.username, password: $0.password, url: $0.url)
-                    }
-                }
-
-                completion(.success(localVaultItems ?? []))
+                    })
+                )
             }
         } catch {
             completion(.failure(error))
