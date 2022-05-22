@@ -40,6 +40,44 @@ final class CoreDataVaultStoreTests: XCTestCase {
         XCTAssertNil(insertionError, "Expected to insert item successfully")
     }
 
+    func test_delete_deliversErrorOnEmptyStore() throws {
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let exp = expectation(description: "Wait for delete operation")
+
+        sut.delete(makeItem(uuid: .fake).storeModel) { result in
+            switch result {
+            case .success:
+                XCTFail("Expected an error, got \(result)")
+            case let .failure(receivedError):
+                XCTAssertEqual(receivedError as! CoreDataVaultStore.KrakenVaultError, CoreDataVaultStore.KrakenVaultError.itemNotFound(UUID.fake.uuidString))
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
+    func test_delete_deliversNoErrorOnNonEmptyStore() throws {
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let exp = expectation(description: "Wait for delete operation")
+        let item = makeItem(uuid: .fake).storeModel
+        insert(item, to: sut)
+
+        sut.delete(item) { result in
+            switch result {
+            case .success:
+                break
+            case let .failure(receivedError):
+                XCTFail("Expected no errors, got \(result) with error \(receivedError)")
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
     // MARK: - Helpers
 
     func expect(

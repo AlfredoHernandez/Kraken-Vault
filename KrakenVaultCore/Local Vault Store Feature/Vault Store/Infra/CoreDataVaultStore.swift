@@ -37,6 +37,10 @@ public final class CoreDataVaultStore {
 }
 
 extension CoreDataVaultStore: VaultStore {
+    public enum KrakenVaultError: Error, Equatable {
+        case itemNotFound(String)
+    }
+
     public func retrieve(completion: @escaping (RetrievalResult) -> Void) {
         perform { context in
             completion(Result {
@@ -47,7 +51,24 @@ extension CoreDataVaultStore: VaultStore {
         }
     }
 
-    public func delete(_: VaultStoreItem, completion _: @escaping (Result<Void, Error>) -> Void) {}
+    public func delete(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        perform { context in
+            let request = ManagedVaultItem.fetchRequest()
+            request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedVaultItem.uuid), item.uuid])
+            request.fetchLimit = 1
+            do {
+                let results = try context.fetch(request)
+                guard let toDelete = results.first as? ManagedVaultItem else {
+                    return completion(.failure(KrakenVaultError.itemNotFound(item.uuid.uuidString)))
+                }
+                context.delete(toDelete)
+                try context.save()
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
 
     public func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
         perform { context in
