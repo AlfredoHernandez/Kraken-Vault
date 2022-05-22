@@ -37,10 +37,6 @@ public final class CoreDataVaultStore {
 }
 
 extension CoreDataVaultStore: VaultStore {
-    public enum KrakenVaultError: Error, Equatable {
-        case itemNotFound(String)
-    }
-
     public func retrieve(completion: @escaping (RetrievalResult) -> Void) {
         perform { context in
             completion(Result {
@@ -53,16 +49,10 @@ extension CoreDataVaultStore: VaultStore {
 
     public func delete(_ item: VaultStoreItem, completion: @escaping (DeletionResult) -> Void) {
         perform { context in
-            do {
-                guard let toDelete = try ManagedVaultItem.find(item, in: context) else {
-                    return completion(.failure(KrakenVaultError.itemNotFound(item.uuid.uuidString)))
-                }
-                context.delete(toDelete)
+            completion(Result {
+                context.delete(try ManagedVaultItem.find(item, in: context))
                 try context.save()
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
+            })
         }
     }
 

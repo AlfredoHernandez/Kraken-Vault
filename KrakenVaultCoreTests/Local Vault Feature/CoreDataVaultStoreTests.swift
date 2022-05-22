@@ -2,7 +2,7 @@
 //  Copyright © 2022 Jesús Alfredo Hernández Alarcón. All rights reserved.
 //
 
-import KrakenVaultCore
+@testable import KrakenVaultCore
 import XCTest
 
 final class CoreDataVaultStoreTests: XCTestCase {
@@ -40,7 +40,7 @@ final class CoreDataVaultStoreTests: XCTestCase {
         let sut = makeSUT()
 
         let receivedError = delete(makeItem(uuid: .fake).storeModel, to: sut)
-        XCTAssertEqual(receivedError as! CoreDataVaultStore.KrakenVaultError, CoreDataVaultStore.KrakenVaultError.itemNotFound(UUID.fake.uuidString))
+        XCTAssertEqual(receivedError as! ManagedVaultItem.Error, .itemNotFound(UUID.fake.uuidString))
     }
 
     func test_delete_deliversNoErrorOnNonEmptyStore() throws {

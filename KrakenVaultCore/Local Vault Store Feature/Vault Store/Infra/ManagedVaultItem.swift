@@ -14,6 +14,10 @@ class ManagedVaultItem: NSManagedObject {
 }
 
 extension ManagedVaultItem {
+    public enum Error: Swift.Error, Equatable {
+        case itemNotFound(String)
+    }
+
     static func all(in context: NSManagedObjectContext) throws -> [ManagedVaultItem] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedVaultItem")
         return try context.fetch(fetchRequest) as! [ManagedVaultItem]
@@ -29,11 +33,14 @@ extension ManagedVaultItem {
         try context.save()
     }
 
-    static func find(_ item: VaultStoreItem, in context: NSManagedObjectContext) throws -> ManagedVaultItem? {
+    static func find(_ item: VaultStoreItem, in context: NSManagedObjectContext) throws -> ManagedVaultItem {
         let request = NSFetchRequest<ManagedVaultItem>(entityName: entity().name!)
         request.returnsObjectsAsFaults = false
         request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedVaultItem.uuid), item.uuid])
         request.fetchLimit = 1
-        return try context.fetch(request).first
+        guard let found = try context.fetch(request).first else {
+            throw Error.itemNotFound(item.uuid.uuidString)
+        }
+        return found
     }
 }
