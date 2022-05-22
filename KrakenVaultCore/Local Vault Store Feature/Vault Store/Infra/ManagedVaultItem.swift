@@ -28,4 +28,12 @@ extension ManagedVaultItem {
         managedItem.url = item.url
         try context.save()
     }
+
+    static func find(_ item: VaultStoreItem, in context: NSManagedObjectContext) throws -> ManagedVaultItem? {
+        let request = NSFetchRequest<ManagedVaultItem>(entityName: entity().name!)
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedVaultItem.uuid), item.uuid])
+        request.fetchLimit = 1
+        return try context.fetch(request).first
+    }
 }

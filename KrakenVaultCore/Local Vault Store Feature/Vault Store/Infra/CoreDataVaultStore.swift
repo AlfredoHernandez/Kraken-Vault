@@ -53,12 +53,8 @@ extension CoreDataVaultStore: VaultStore {
 
     public func delete(_ item: VaultStoreItem, completion: @escaping (DeletionResult) -> Void) {
         perform { context in
-            let request = ManagedVaultItem.fetchRequest()
-            request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedVaultItem.uuid), item.uuid])
-            request.fetchLimit = 1
             do {
-                let results = try context.fetch(request)
-                guard let toDelete = results.first as? ManagedVaultItem else {
+                guard let toDelete = try ManagedVaultItem.find(item, in: context) else {
                     return completion(.failure(KrakenVaultError.itemNotFound(item.uuid.uuidString)))
                 }
                 context.delete(toDelete)
