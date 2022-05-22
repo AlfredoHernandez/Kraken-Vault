@@ -31,6 +31,15 @@ final class CoreDataVaultStoreTests: XCTestCase {
         XCTAssertNil(insertionError, "Expected to insert item successfully")
     }
 
+    func test_insert_deliversNoErrorOnNonEmptyStore() throws {
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        insert(.fixture(), to: sut)
+
+        let insertionError = insert(.fixture(name: "any-other-item"), to: sut)
+        XCTAssertNil(insertionError, "Expected to insert item successfully")
+    }
+
     // MARK: - Helpers
 
     func expect(
