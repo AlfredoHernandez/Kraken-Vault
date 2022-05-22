@@ -7,15 +7,13 @@ import XCTest
 
 final class CoreDataVaultStoreTests: XCTestCase {
     func test_retrieve_deliversEmptyOnEmptyStore() throws {
-        let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let sut = makeSUT()
 
         expect(sut, toRetrieve: .success([]))
     }
 
     func test_retrieve_deliversFoundValuesOnNonEmptyStore() throws {
-        let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let sut = makeSUT()
         let item = makeItem()
 
         insert(item.storeModel, to: sut)
@@ -24,16 +22,14 @@ final class CoreDataVaultStoreTests: XCTestCase {
     }
 
     func test_insert_deliversNoErrorOnEmptyStore() throws {
-        let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let sut = makeSUT()
         let insertionError = insert(.fixture(), to: sut)
 
         XCTAssertNil(insertionError, "Expected to insert item successfully")
     }
 
     func test_insert_deliversNoErrorOnNonEmptyStore() throws {
-        let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let sut = makeSUT()
         insert(.fixture(), to: sut)
 
         let insertionError = insert(.fixture(name: "any-other-item"), to: sut)
@@ -41,8 +37,7 @@ final class CoreDataVaultStoreTests: XCTestCase {
     }
 
     func test_delete_deliversErrorOnEmptyStore() throws {
-        let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for delete operation")
 
         sut.delete(makeItem(uuid: .fake).storeModel) { result in
@@ -59,8 +54,7 @@ final class CoreDataVaultStoreTests: XCTestCase {
     }
 
     func test_delete_deliversNoErrorOnNonEmptyStore() throws {
-        let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for delete operation")
         let item = makeItem(uuid: .fake).storeModel
         insert(item, to: sut)
@@ -79,6 +73,15 @@ final class CoreDataVaultStoreTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> VaultStore {
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try! CoreDataVaultStore(storeURL: storeURL)
+
+        trackForMemoryLeaks(sut, file: file, line: line)
+
+        return sut
+    }
 
     func expect(
         _ sut: VaultStore,
