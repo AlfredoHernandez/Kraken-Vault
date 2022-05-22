@@ -13,6 +13,16 @@ final class CoreDataVaultStoreTests: XCTestCase {
         expect(sut, toRetrieve: .success([]))
     }
 
+    func test_retrieve_deliversNoErrorOnNonEmptyStore() throws {
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try CoreDataVaultStore(storeURL: storeURL)
+        let item = makeItem()
+
+        insert(item.storeModel, to: sut)
+
+        expect(sut, toRetrieve: .success([item.storeModel]))
+    }
+
     func test_insert_deliversNoErrorOnEmptyStore() throws {
         let storeURL = URL(fileURLWithPath: "/dev/null")
         let sut = try CoreDataVaultStore(storeURL: storeURL)
@@ -56,5 +66,23 @@ final class CoreDataVaultStoreTests: XCTestCase {
         }
 
         wait(for: [exp], timeout: 1.0)
+    }
+
+    @discardableResult
+    func insert(_ item: VaultStoreItem, to sut: VaultStore) -> Error? {
+        let exp = expectation(description: "Wait for store insertion")
+        var receivedError: Error?
+
+        sut.insert(item) { result in
+            switch result {
+            case .success: break
+            case let .failure(error):
+                receivedError = error
+            }
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+        return receivedError
     }
 }
