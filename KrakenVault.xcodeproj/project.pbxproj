@@ -317,12 +317,12 @@
 		389E54FD282090CE00F52D68 /* Vault Module */ = {
 			isa = PBXGroup;
 			children = (
-				389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */,
 				389E5500282091BB00F52D68 /* KrakenVaultView.swift */,
 				380A672128382F4C001B8DE7 /* LocalVaultLoader+Publisher.swift */,
-				380A672328382F71001B8DE7 /* VaultReducer.swift */,
 				380A672528382FB2001B8DE7 /* PasswordVaultAction.swift */,
+				389E54FE282090F500F52D68 /* PasswordVaultItemView.swift */,
 				380A672728382FC4001B8DE7 /* PasswordVaultState.swift */,
+				380A672328382F71001B8DE7 /* VaultReducer.swift */,
 			);
 			path = "Vault Module";
 			sourceTree = "<group>";
