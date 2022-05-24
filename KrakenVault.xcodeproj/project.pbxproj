@@ -27,6 +27,7 @@
 		3815065C283AC53F00F655E2 /* KrakenVaultStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3815065A283AC53F00F655E2 /* KrakenVaultStore.xcdatamodeld */; };
 		3815065E283AC73F00F655E2 /* ManagedVaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815065D283AC73F00F655E2 /* ManagedVaultItem.swift */; };
 		38150660283ACD6900F655E2 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815065F283ACD6900F655E2 /* CoreDataHelpers.swift */; };
+		381692FE283D486F00F10BB2 /* CreatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381692FD283D486F00F10BB2 /* CreatePasswordView.swift */; };
 		3839D776282D8B6300074923 /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */; };
 		383D1DDD282307C80066C185 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 383D1DDC282307C80066C185 /* ComposableArchitecture */; };
 		38527C9F282F31F800ACC933 /* App+UIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38527C9E282F31F800ACC933 /* App+UIActions.swift */; };
@@ -123,6 +124,7 @@
 		3815065B283AC53F00F655E2 /* KrakenVaultStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KrakenVaultStore.xcdatamodel; sourceTree = "<group>"; };
 		3815065D283AC73F00F655E2 /* ManagedVaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedVaultItem.swift; sourceTree = "<group>"; };
 		3815065F283ACD6900F655E2 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		381692FD283D486F00F10BB2 /* CreatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordView.swift; sourceTree = "<group>"; };
 		3839D775282D8B6300074923 /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		38527C9E282F31F800ACC933 /* App+UIActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+UIActions.swift"; sourceTree = "<group>"; };
 		3893E0DD2837FE87007A80AF /* KrakenVaultCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KrakenVaultCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,6 +319,7 @@
 		389E54FD282090CE00F52D68 /* Vault Module */ = {
 			isa = PBXGroup;
 			children = (
+				381692FD283D486F00F10BB2 /* CreatePasswordView.swift */,
 				389E5500282091BB00F52D68 /* KrakenVaultView.swift */,
 				380A672128382F4C001B8DE7 /* LocalVaultLoader+Publisher.swift */,
 				380A672528382FB2001B8DE7 /* PasswordVaultAction.swift */,
@@ -566,6 +569,7 @@
 				380A672428382F71001B8DE7 /* VaultReducer.swift in Sources */,
 				C95A8E20A8291F0B4D1FFBCD /* PasswordGeneratorAction.swift in Sources */,
 				380A672628382FB2001B8DE7 /* PasswordVaultAction.swift in Sources */,
+				381692FE283D486F00F10BB2 /* CreatePasswordView.swift in Sources */,
 				C95A8A1A1DD2079467703474 /* PasswordOptionToggle.swift in Sources */,
 				C95A8A038574BA2B6187115D /* PasswordGeneratedReducer.swift in Sources */,
 			);

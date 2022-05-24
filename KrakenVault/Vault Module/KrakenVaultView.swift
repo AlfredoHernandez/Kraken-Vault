@@ -9,6 +9,7 @@ import PowerfulCombine
 import SwiftUI
 
 struct KrakenVaultView: View {
+    @State var presentSheet = false
     @ObservedObject var store: Store<PasswordVaultState, PasswordVaultAction>
     @State var query: String = ""
 
@@ -41,16 +42,7 @@ struct KrakenVaultView: View {
             .navigationTitle(Text("Vault"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                Button(action: { store.send(
-                    .save(
-                        VaultItem(
-                            name: "A new name",
-                            username: "a new username xD",
-                            password: "anyPassword",
-                            url: URL(string: "https://any-url.com")!
-                        )
-                    )
-                ) }) {
+                Button(action: { presentSheet = true }) {
                     Image(systemName: "plus")
                 }
             }
@@ -58,6 +50,9 @@ struct KrakenVaultView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             store.send(.loadVault)
+        }
+        .sheet(isPresented: $presentSheet) {
+            CreatePasswordView(displayingForm: $presentSheet)
         }
     }
 }
