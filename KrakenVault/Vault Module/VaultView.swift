@@ -82,9 +82,9 @@ let testlVaultLoader = LocalVaultLoader(store: TestVaultStore())
 
 class TestVaultStore: VaultStore {
     var items: [VaultStoreItem] = [
-        //        .init(name: "Facebook", username: "user@mail.com", password: "123456", url: URL(string: "https://facebook.com/")!),
-//        .init(name: "Twitter", username: "username", password: "123456", url: URL(string: "https://twitter.com/")!),
-//        .init(name: "Instagram", username: "user@mail.com", password: "654321", url: URL(string: "https://instagram.com/")!),
+        .init(name: "Facebook", username: "user@mail.com", password: "123456", url: URL(string: "https://facebook.com/")!),
+        .init(name: "Twitter", username: "username", password: "123456", url: URL(string: "https://twitter.com/")!),
+        .init(name: "Instagram", username: "user@mail.com", password: "654321", url: URL(string: "https://instagram.com/")!),
     ]
 
     func insert(_ item: VaultStoreItem, completion: @escaping (Result<Void, Error>) -> Void) {
