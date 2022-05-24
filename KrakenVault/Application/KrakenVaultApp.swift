@@ -3,6 +3,7 @@
 //
 
 import ComposableArchitecture
+import CoreData
 import KrakenVaultCore
 import SwiftUI
 
@@ -27,4 +28,10 @@ let store = Store(
     )
 )
 
-let localVaultLoader = LocalVaultLoader(store: TestVaultStore())
+let krakenVaultStore: VaultStore = try! CoreDataVaultStore(
+    storeURL: NSPersistentContainer
+        .defaultDirectoryURL()
+        .appendingPathComponent("kraken-vault-store.sqlite")
+)
+
+let localVaultLoader = LocalVaultLoader(store: krakenVaultStore)

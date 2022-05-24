@@ -30,6 +30,14 @@ struct VaultView: View {
                 placement: .navigationBarDrawer(displayMode: .automatic),
                 prompt: Text("Search password")
             )
+            .overlay(Group {
+                if store.value.vaultItems.isEmpty {
+                    Text("Oops, loos like there's no any passwords in your vault! Let's add a new one 🔑")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .padding()
+                }
+            })
             .navigationTitle(Text("Vault"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
