@@ -8,7 +8,7 @@ import KrakenVaultCore
 import PowerfulCombine
 import SwiftUI
 
-struct VaultView: View {
+struct KrakenVaultView: View {
     @ObservedObject var store: Store<PasswordVaultState, PasswordVaultAction>
     @State var query: String = ""
 
@@ -68,7 +68,7 @@ extension VaultItem: Identifiable {
 
 struct VaultView_Previews: PreviewProvider {
     static var previews: some View {
-        VaultView(
+        KrakenVaultView(
             store: Store(
                 initialValue: .init(),
                 reducer: vaultReducer,

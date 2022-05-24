@@ -10,7 +10,7 @@ struct KrakenVaultMainView: View {
 
     var body: some View {
         TabView {
-            VaultView(store: store.view(value: { $0.vault }, action: { AppAction.vault($0) }))
+            KrakenVaultView(store: store.view(value: { $0.vault }, action: { AppAction.vault($0) }))
                 .tabItem {
                     Image(systemName: "lock.square")
                     Text("Vault")
