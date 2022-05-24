@@ -11,6 +11,7 @@ import UIKit
 enum AppAction {
     case passwordGenerated(PasswordGeneratorAction)
     case vault(PasswordVaultAction)
+    case createPassword(CreatePasswordAction)
 }
 
 extension AppAction {
@@ -33,6 +34,17 @@ extension AppAction {
         set {
             guard case .vault = self, let newValue = newValue else { return }
             self = .vault(newValue)
+        }
+    }
+
+    public var createPassword: CreatePasswordAction? {
+        get {
+            guard case let .createPassword(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .createPassword = self, let newValue = newValue else { return }
+            self = .createPassword(newValue)
         }
     }
 }

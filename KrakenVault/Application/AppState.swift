@@ -12,6 +12,8 @@ struct AppState {
     var includeUppercased = true
     var includeNumbers = true
     var vaultItems: [VaultItem] = []
+
+    var createPassword = CreatePasswordState()
 }
 
 extension AppState {

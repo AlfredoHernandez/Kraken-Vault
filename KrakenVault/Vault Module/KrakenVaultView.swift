@@ -9,9 +9,10 @@ import PowerfulCombine
 import SwiftUI
 
 struct KrakenVaultView: View {
-    @State var presentSheet = false
+    @Binding var presentSheet: Bool
     @ObservedObject var store: Store<PasswordVaultState, PasswordVaultAction>
     @State var query: String = ""
+    var createPasswordView: () -> CreatePasswordView
 
     var body: some View {
         NavigationView {
@@ -52,7 +53,10 @@ struct KrakenVaultView: View {
             store.send(.loadVault)
         }
         .sheet(isPresented: $presentSheet) {
-            CreatePasswordView(displayingForm: $presentSheet)
+            createPasswordView()
+                .onDisappear {
+                    store.send(.loadVault)
+                }
         }
     }
 }
@@ -64,11 +68,24 @@ extension VaultItem: Identifiable {
 struct VaultView_Previews: PreviewProvider {
     static var previews: some View {
         KrakenVaultView(
+            presentSheet: Binding(
+                get: { store.value.createPassword.displayingForm },
+                set: { _ in store.send(.createPassword(.toggleShowPassword)) }
+            ),
             store: Store(
                 initialValue: .init(),
                 reducer: vaultReducer,
                 environment: (testlVaultLoader, .immediateOnMainQueue)
-            )
+            ),
+            createPasswordView: {
+                CreatePasswordView(
+                    store: Store(
+                        initialValue: .init(),
+                        reducer: createPasswordReducer,
+                        environment: testlVaultLoader
+                    )
+                )
+            }
         )
     }
 }
