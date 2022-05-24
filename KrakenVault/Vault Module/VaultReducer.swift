@@ -7,17 +7,16 @@ import Foundation
 import KrakenVaultCore
 import PowerfulCombine
 
-typealias VaultEnvironment = (loader: LocalVaultLoader, scheduler: AnyDispatchQueueScheduler)
+typealias VaultEnvironment = (vaultStore: LocalVaultLoader, scheduler: AnyDispatchQueueScheduler)
 
-// TODO: Split LocalVaultLoader to load, insert, delete, etc...
 func vaultReducer(state: inout PasswordVaultState, action: PasswordVaultAction, environment: VaultEnvironment) -> [Effect<PasswordVaultAction>] {
     switch action {
     case .loadVault:
         return [
-            environment.loader.publisher()
+            environment.vaultStore
+                .loadPublisher()
                 .receive(on: environment.scheduler)
                 .replaceError(with: [])
-                .eraseToEffect()
                 .flatMap { items in
                     Effect<PasswordVaultAction>.sync {
                         .loadedVault(items)
@@ -29,19 +28,26 @@ func vaultReducer(state: inout PasswordVaultState, action: PasswordVaultAction, 
         return []
     case let .save(item):
         return [
-            .fireAndForget {
-                environment.loader.save(item) { _ in }
-            },
-            .sync { .loadVault },
+            environment.vaultStore
+                .savePublisher(item: item)
+                .replaceError(with: ())
+                .flatMap { _ in
+                    Effect<PasswordVaultAction>.sync { .loadVault }
+                }
+                .receive(on: environment.scheduler)
+                .eraseToEffect(),
         ]
     case let .delete(indexSet):
-        let index = indexSet.first ?? 0
-        let itemToDelete = state.vaultItems.remove(at: index)
+        let item = state.vaultItems.remove(at: indexSet.first ?? 0)
         return [
-            .fireAndForget {
-                environment.loader.delete(itemToDelete) { _ in }
-            },
-            .sync { .loadVault },
+            environment.vaultStore
+                .deletePublisher(item: item)
+                .replaceError(with: ())
+                .flatMap { _ in
+                    Effect<PasswordVaultAction>.sync { .loadVault }
+                }
+                .receive(on: environment.scheduler)
+                .eraseToEffect(),
         ]
     }
 }
