@@ -4,6 +4,6 @@
 
 import KrakenVaultCore
 
-struct PasswordVaultState {
+struct PasswordVaultState: Equatable {
     var vaultItems: [VaultItem] = []
 }

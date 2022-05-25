@@ -6,7 +6,7 @@ import ComposableArchitecture
 import KrakenVaultCore
 import SwiftUI
 
-struct CreatePasswordState {
+struct CreatePasswordState: Equatable {
     var displayingForm = false
     var showPassword = false
     var siteName = "The Kraken Vault"
