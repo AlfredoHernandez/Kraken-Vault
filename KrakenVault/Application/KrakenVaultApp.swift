@@ -17,7 +17,7 @@ struct KrakenVaultApp: App {
 }
 
 let store = Store(
-    initialValue: AppState(),
+    initialState: AppState(),
     reducer: appReducer,
     environment: AppEnvironment(
         copyToPasteboard: copyToPasteboard,

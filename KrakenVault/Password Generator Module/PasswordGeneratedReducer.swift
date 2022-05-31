@@ -3,7 +3,6 @@
 //
 
 import ComposableArchitecture
-import Foundation
 
 typealias PasswordGeneratorEnvironment = (
     copyToPasteboard: ([String]) -> Void,
@@ -11,11 +10,14 @@ typealias PasswordGeneratorEnvironment = (
     generatePassword: (_ length: Int, _ specialCharacters: Bool, _ uppercase: Bool, _ numbers: Bool) -> [String]
 )
 
-func passwordGeneratorReducer(
-    state: inout PasswordGeneratorState,
-    action: PasswordGeneratorAction,
-    environment: PasswordGeneratorEnvironment
-) -> [Effect<PasswordGeneratorAction>] {
+private func copyPasswordInPasteboardEffect(
+    passwordGenerated: [String],
+    copyToPasteboard: @escaping ([String]) -> Void
+) -> Effect<PasswordGeneratorAction, Never> {
+    .fireAndForget { copyToPasteboard(passwordGenerated) }
+}
+
+let passwordGeneratorReducer = Reducer<PasswordGeneratorState, PasswordGeneratorAction, PasswordGeneratorEnvironment> { state, action, environment in
     switch action {
     case .generate:
         state.characters = environment.generatePassword(
@@ -24,41 +26,23 @@ func passwordGeneratorReducer(
             state.includeUppercased,
             state.includeNumbers
         )
-        return [generateHapticEffect(environment.generateFeedbackImpact)]
+        return Effect.fireAndForget { generateFeedbackImpact() }
     case let .includeNumbers(withNumbers):
         state.includeNumbers = withNumbers
-        return [generatePasswordEffect()]
+        return Effect(value: .generate)
     case let .includeSpecialChars(withSpecialChars):
         state.includeSpecialChars = withSpecialChars
-        return [generatePasswordEffect()]
+        return Effect(value: .generate)
     case let .includeUppercased(withUppercased):
         state.includeUppercased = withUppercased
-        return [generatePasswordEffect()]
+        return Effect(value: .generate)
     case let .updatePasswordLength(length):
         state.characterCount = length
-        return [generatePasswordEffect()]
+        return Effect(value: .generate)
     case .copyPassword:
-        return [
-            copyPasswordInPasteboardEffect(
-                passwordGenerated: state.characters,
-                copyToPasteboard: environment.copyToPasteboard
-            ),
-            generateHapticEffect(environment.generateFeedbackImpact),
-        ]
+        return copyPasswordInPasteboardEffect(
+            passwordGenerated: state.characters,
+            copyToPasteboard: environment.copyToPasteboard
+        )
     }
-}
-
-private func copyPasswordInPasteboardEffect(
-    passwordGenerated: [String],
-    copyToPasteboard: @escaping ([String]) -> Void
-) -> Effect<PasswordGeneratorAction> {
-    .fireAndForget { copyToPasteboard(passwordGenerated) }
-}
-
-private func generateHapticEffect(_ impactGenerator: @escaping () -> Void) -> Effect<PasswordGeneratorAction> {
-    .fireAndForget(work: impactGenerator)
-}
-
-private func generatePasswordEffect() -> Effect<PasswordGeneratorAction> {
-    .sync { .generate }
 }

@@ -9,54 +9,56 @@ import PowerfulCombine
 import SwiftUI
 
 struct KrakenVaultView: View {
+    let store: Store<PasswordVaultState, PasswordVaultAction>
     @Binding var presentSheet: Bool
-    @ObservedObject var store: Store<PasswordVaultState, PasswordVaultAction>
     @State var query: String = ""
     var createPasswordView: () -> CreatePasswordView
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(store.value.vaultItems) { item in
-                    NavigationLink {
-                        EmptyView()
-                    } label: {
-                        PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
+        WithViewStore(self.store) { viewStore in
+            NavigationView {
+                List {
+                    ForEach(viewStore.vaultItems) { item in
+                        NavigationLink {
+                            EmptyView()
+                        } label: {
+                            PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
+                        }
+                    }
+                    .onDelete { index in viewStore.send(.delete(index)) }
+                }
+                .listStyle(PlainListStyle())
+                .searchable(
+                    text: $query,
+                    placement: .navigationBarDrawer(displayMode: .automatic),
+                    prompt: Text("Search password")
+                )
+                .overlay(Group {
+                    if viewStore.vaultItems.isEmpty {
+                        Text("Oops, loos like there's no any passwords in your vault! Let's add a new one 🔑")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .padding()
+                    }
+                })
+                .navigationTitle(Text("Vault"))
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {
+                    Button(action: { presentSheet = true }) {
+                        Image(systemName: "plus")
                     }
                 }
-                .onDelete { index in store.send(.delete(index)) }
             }
-            .listStyle(PlainListStyle())
-            .searchable(
-                text: $query,
-                placement: .navigationBarDrawer(displayMode: .automatic),
-                prompt: Text("Search password")
-            )
-            .overlay(Group {
-                if store.value.vaultItems.isEmpty {
-                    Text("Oops, loos like there's no any passwords in your vault! Let's add a new one 🔑")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .padding()
-                }
-            })
-            .navigationTitle(Text("Vault"))
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                Button(action: { presentSheet = true }) {
-                    Image(systemName: "plus")
-                }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear {
+                viewStore.send(.loadVault)
             }
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear {
-            store.send(.loadVault)
-        }
-        .sheet(isPresented: $presentSheet) {
-            createPasswordView()
-                .onDisappear {
-                    store.send(.loadVault)
-                }
+            .sheet(isPresented: $presentSheet) {
+                createPasswordView()
+                    .onDisappear {
+                        viewStore.send(.loadVault)
+                    }
+            }
         }
     }
 }
@@ -68,19 +70,16 @@ extension VaultItem: Identifiable {
 struct VaultView_Previews: PreviewProvider {
     static var previews: some View {
         KrakenVaultView(
-            presentSheet: Binding(
-                get: { store.value.createPassword.displayingForm },
-                set: { _ in store.send(.createPassword(.toggleShowPassword)) }
-            ),
             store: Store(
-                initialValue: .init(),
+                initialState: .init(),
                 reducer: vaultReducer,
                 environment: (testlVaultLoader, .immediateOnMainQueue)
             ),
+            presentSheet: .constant(false),
             createPasswordView: {
                 CreatePasswordView(
                     store: Store(
-                        initialValue: .init(),
+                        initialState: .init(),
                         reducer: createPasswordReducer,
                         environment: testlVaultLoader
                     )

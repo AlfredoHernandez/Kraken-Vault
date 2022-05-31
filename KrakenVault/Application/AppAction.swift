@@ -14,40 +14,40 @@ enum AppAction {
     case createPassword(CreatePasswordAction)
 }
 
-extension AppAction {
-    public var passwordGenerated: PasswordGeneratorAction? {
-        get {
-            guard case let .passwordGenerated(value) = self else { return nil }
-            return value
-        }
-        set {
-            guard case .passwordGenerated = self, let newValue = newValue else { return }
-            self = .passwordGenerated(newValue)
-        }
-    }
-
-    public var vault: PasswordVaultAction? {
-        get {
-            guard case let .vault(value) = self else { return nil }
-            return value
-        }
-        set {
-            guard case .vault = self, let newValue = newValue else { return }
-            self = .vault(newValue)
-        }
-    }
-
-    public var createPassword: CreatePasswordAction? {
-        get {
-            guard case let .createPassword(value) = self else { return nil }
-            return value
-        }
-        set {
-            guard case .createPassword = self, let newValue = newValue else { return }
-            self = .createPassword(newValue)
-        }
-    }
-}
+// extension AppAction {
+//    public var passwordGenerated: PasswordGeneratorAction? {
+//        get {
+//            guard case let .passwordGenerated(value) = self else { return nil }
+//            return value
+//        }
+//        set {
+//            guard case .passwordGenerated = self, let newValue = newValue else { return }
+//            self = .passwordGenerated(newValue)
+//        }
+//    }
+//
+//    public var vault: PasswordVaultAction? {
+//        get {
+//            guard case let .vault(value) = self else { return nil }
+//            return value
+//        }
+//        set {
+//            guard case .vault = self, let newValue = newValue else { return }
+//            self = .vault(newValue)
+//        }
+//    }
+//
+//    public var createPassword: CreatePasswordAction? {
+//        get {
+//            guard case let .createPassword(value) = self else { return nil }
+//            return value
+//        }
+//        set {
+//            guard case .createPassword = self, let newValue = newValue else { return }
+//            self = .createPassword(newValue)
+//        }
+//    }
+// }
 
 typealias AppEnvironment = (
     copyToPasteboard: ([String]) -> Void,
