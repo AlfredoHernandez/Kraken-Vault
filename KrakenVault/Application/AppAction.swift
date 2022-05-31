@@ -10,7 +10,7 @@ import UIKit
 
 enum AppAction {
     case passwordGenerated(PasswordGeneratorAction)
-    case vault(PasswordVaultAction)
+    case vault(KrakenVaultAction)
     case createPassword(CreatePasswordAction)
 }
 

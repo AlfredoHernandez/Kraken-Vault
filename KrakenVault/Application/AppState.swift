@@ -6,7 +6,14 @@
 import KrakenVaultCore
 
 struct AppState: Equatable {
-    var passwordVaultState = PasswordVaultState()
+    var passwordVaultState = KrakenVaultState()
     var passwordGeneratorState = PasswordGeneratorState()
-    var createPasswordState = CreatePasswordState()
+    var createPasswordState = CreatePasswordState(
+        displayingForm: false,
+        showPassword: true,
+        siteName: "The Kraken Vault",
+        username: "AlfredoHernandez",
+        password: "ASecretPassw0rd",
+        siteURL: "https://any-url.com"
+    )
 }

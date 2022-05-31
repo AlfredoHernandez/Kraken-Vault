@@ -9,7 +9,7 @@ import PowerfulCombine
 import SwiftUI
 
 struct KrakenVaultView: View {
-    let store: Store<PasswordVaultState, PasswordVaultAction>
+    let store: Store<KrakenVaultState, KrakenVaultAction>
     @Binding var presentSheet: Bool
     @State var query: String = ""
     var createPasswordView: () -> CreatePasswordView
@@ -22,7 +22,7 @@ struct KrakenVaultView: View {
                         NavigationLink {
                             EmptyView()
                         } label: {
-                            PasswordVaultItemView(siteName: item.name, loginIdentifier: item.username)
+                            KrakenVaultItemView(siteName: item.name, loginIdentifier: item.username)
                         }
                     }
                     .onDelete { index in viewStore.send(.delete(index)) }
@@ -72,7 +72,7 @@ struct VaultView_Previews: PreviewProvider {
         KrakenVaultView(
             store: Store(
                 initialState: .init(),
-                reducer: vaultReducer,
+                reducer: krakenVaultReducer,
                 environment: (testlVaultLoader, .immediateOnMainQueue)
             ),
             presentSheet: .constant(false),

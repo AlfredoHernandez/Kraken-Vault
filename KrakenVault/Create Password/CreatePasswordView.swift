@@ -8,11 +8,11 @@ import SwiftUI
 
 struct CreatePasswordState: Equatable {
     var displayingForm = false
-    var showPassword = false
-    var siteName = "The Kraken Vault"
-    var username = "AlfredoHernandez"
-    var password = "ASecretPassw0rd"
-    var siteURL = "https://any-url.com"
+    var showPassword = true
+    var siteName = ""
+    var username = ""
+    var password = ""
+    var siteURL = "https://"
 }
 
 enum CreatePasswordAction {
@@ -23,6 +23,7 @@ enum CreatePasswordAction {
     case setSiteURL(String)
     case toggleShowPassword
     case displayingForm(Bool)
+    case cleanForm
 }
 
 typealias CreatePasswordEnvironment = LocalVaultLoader
@@ -34,6 +35,7 @@ let createPasswordReducer = Reducer<CreatePasswordState, CreatePasswordAction, C
             .fireAndForget {
                 environment.save(item, completion: { _ in })
             },
+            Effect(value: .cleanForm),
             Effect(value: .displayingForm(false))
         )
     case let .setName(string):
@@ -54,6 +56,12 @@ let createPasswordReducer = Reducer<CreatePasswordState, CreatePasswordAction, C
     case let .displayingForm(value):
         state.displayingForm = value
         return .none
+    case .cleanForm:
+        state.siteName = ""
+        state.username = ""
+        state.password = ""
+        state.siteURL = "https://"
+        return .none
     }
 }
 
@@ -69,7 +77,7 @@ struct CreatePasswordView: View {
                             VStack(alignment: .leading) {
                                 Text("Name").bold()
                                 TextField(
-                                    "Kraken Vault",
+                                    "Type a password name",
                                     text: Binding(get: { viewStore.siteName }, set: { viewStore.send(.setName($0)) })
                                 )
                                 .textContentType(.organizationName)
@@ -79,7 +87,7 @@ struct CreatePasswordView: View {
                             VStack(alignment: .leading) {
                                 Text("Username or e-mail").bold()
                                 TextField(
-                                    "Username/e-mail",
+                                    "Type your username/password to use for log-in",
                                     text: Binding(get: { viewStore.username }, set: { viewStore.send(.setUsername($0)) })
                                 )
                                 .textContentType(.username)
@@ -92,14 +100,14 @@ struct CreatePasswordView: View {
                                 HStack {
                                     if !viewStore.showPassword {
                                         SecureField(
-                                            "Your password",
+                                            "Type a secure password",
                                             text: Binding(get: { viewStore.password }, set: { viewStore.send(.setPassword($0)) })
                                         )
                                         .textContentType(.password)
                                         .keyboardType(.asciiCapable)
                                     } else {
                                         TextField(
-                                            "Password",
+                                            "Type a secure password",
                                             text: Binding(get: { viewStore.password }, set: { viewStore.send(.setPassword($0)) })
                                         )
                                         .textContentType(.password)
@@ -117,7 +125,7 @@ struct CreatePasswordView: View {
                             VStack(alignment: .leading) {
                                 Text("Site URL").bold()
                                 TextField(
-                                    "https://your-site.com",
+                                    "Type your site's URL",
                                     text: Binding(get: { viewStore.siteURL }, set: { viewStore.send(.setSiteURL($0)) })
                                 )
                                 .textContentType(.URL)
