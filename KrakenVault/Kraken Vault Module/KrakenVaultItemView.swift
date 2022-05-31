@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct PasswordVaultItemView: View {
+struct KrakenVaultItemView: View {
     let siteName: String
     let loginIdentifier: String
 
@@ -32,9 +32,9 @@ struct PasswordVaultItemView: View {
 struct PasswordVaultItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PasswordVaultItemView(siteName: "facebook.com", loginIdentifier: "AlfredoHdzAlarcon")
+            KrakenVaultItemView(siteName: "facebook.com", loginIdentifier: "AlfredoHdzAlarcon")
                 .previewLayout(.sizeThatFits)
-            PasswordVaultItemView(siteName: "facebook.com", loginIdentifier: "AlfredoHdzAlarcon")
+            KrakenVaultItemView(siteName: "facebook.com", loginIdentifier: "AlfredoHdzAlarcon")
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
         }

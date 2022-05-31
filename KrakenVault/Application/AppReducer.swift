@@ -4,12 +4,12 @@
 
 import ComposableArchitecture
 
-let appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
-    pullback(
-        passwordGeneratorReducer,
-        value: \AppState.passwordGenerator,
-        action: \AppAction.passwordGenerated,
-        environment: { ($0.copyToPasteboard, $0.generateFeedbackImpact, $0.generatePassword) }
-    ),
-    pullback(vaultReducer, value: \AppState.vault, action: \AppAction.vault, environment: { ($0.vaultItemsStore, $0.dispatchQueueScheduler) })
+let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
+    passwordGeneratorReducer.pullback(state: \AppState.passwordGeneratorState, action: /AppAction.passwordGenerated, environment: {
+        (copyToPasteboard: $0.copyToPasteboard, generateFeedbackImpact: $0.generateFeedbackImpact, generatePassword: $0.generatePassword)
+    }),
+    krakenVaultReducer.pullback(state: \AppState.passwordVaultState, action: /AppAction.vault, environment: {
+        (vaultStore: $0.vaultItemsStore, scheduler: $0.dispatchQueueScheduler)
+    }),
+    createPasswordReducer.pullback(state: \AppState.createPasswordState, action: /AppAction.createPassword, environment: { $0.vaultItemsStore })
 )

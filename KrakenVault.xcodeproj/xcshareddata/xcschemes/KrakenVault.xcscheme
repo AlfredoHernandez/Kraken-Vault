@@ -37,6 +37,13 @@
             BlueprintName = "KrakenVault"
             ReferencedContainer = "container:KrakenVault.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3893E0DC2837FE87007A80AF"
+            BuildableName = "KrakenVaultCore.framework"
+            BlueprintName = "KrakenVaultCore"
+            ReferencedContainer = "container:KrakenVault.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

@@ -17,21 +17,24 @@ struct KrakenVaultApp: App {
 }
 
 let store = Store(
-    initialValue: AppState(),
+    initialState: AppState(),
     reducer: appReducer,
     environment: AppEnvironment(
         copyToPasteboard: copyToPasteboard,
         generateFeedbackImpact: generateFeedbackImpact,
         generatePassword: generatePassword,
-        vaultItemsStore: localVaultLoader,
+        vaultItemsStore: zurry(localVaultLoader),
         dispatchQueueScheduler: DispatchQueue.main.eraseToAnyScheduler()
     )
 )
 
-let krakenVaultStore: VaultStore = try! CoreDataVaultStore(
+let KrakenVaultStore: VaultStore = try! CoreDataVaultStore(
     storeURL: NSPersistentContainer
         .defaultDirectoryURL()
         .appendingPathComponent("kraken-vault-store.sqlite")
 )
 
-let localVaultLoader = LocalVaultLoader(store: krakenVaultStore)
+func localVaultLoader() -> LocalVaultLoader {
+    KrakenVaultStore
+        |> LocalVaultLoader.init
+}

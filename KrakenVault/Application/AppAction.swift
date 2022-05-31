@@ -10,31 +10,8 @@ import UIKit
 
 enum AppAction {
     case passwordGenerated(PasswordGeneratorAction)
-    case vault(PasswordVaultAction)
-}
-
-extension AppAction {
-    public var passwordGenerated: PasswordGeneratorAction? {
-        get {
-            guard case let .passwordGenerated(value) = self else { return nil }
-            return value
-        }
-        set {
-            guard case .passwordGenerated = self, let newValue = newValue else { return }
-            self = .passwordGenerated(newValue)
-        }
-    }
-
-    public var vault: PasswordVaultAction? {
-        get {
-            guard case let .vault(value) = self else { return nil }
-            return value
-        }
-        set {
-            guard case .vault = self, let newValue = newValue else { return }
-            self = .vault(newValue)
-        }
-    }
+    case vault(KrakenVaultAction)
+    case createPassword(CreatePasswordAction)
 }
 
 typealias AppEnvironment = (
